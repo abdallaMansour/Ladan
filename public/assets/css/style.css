@@ -109,6 +109,7 @@ nav .nav-item .active {
     color: var(--text-color);
     border-radius: 50px;
     overflow: hidden;
+    text-wrap: nowrap;
 }
 
 .learn-more-page {
@@ -122,6 +123,7 @@ nav .nav-item .active {
     color: var(--text-color);
     border-radius: 50px;
     overflow: hidden;
+    text-wrap: nowrap;
 }
 .en-learn-more {
     position: relative;
@@ -134,6 +136,7 @@ nav .nav-item .active {
     color: var(--text-color);
     border-radius: 50px;
     overflow: hidden;
+    text-wrap: nowrap;
 }
 
 .en-learn-more-page {
@@ -147,6 +150,7 @@ nav .nav-item .active {
     color: var(--text-color);
     border-radius: 50px;
     overflow: hidden;
+    text-wrap: nowrap;
 }
 
 .learn-more::after,
@@ -896,11 +900,119 @@ footer .footer-links a:hover {
 
 
 
+/* start register // login // forgit password  */
+/* .log-body .container {
+    width: 100% ;
+} */
+.log-body section {
+    margin: 0;
+    width: 100%;
+}
+.log-body {
+    padding: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: var(--dark-3);
+}
+.register-container {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: 0 0.125rem 0.25rem rgba(255, 255, 255, 0.5) !important;
+}
+.register-container form {
+    border: 2px solid #ddd;
+}
+.register-container img {
+    display: block;
+    width: 380px;
+    object-fit: cover;
+    margin: auto;
+}
+.register-container img.login-img {
+    display: block;
+    width: 450px;
+    object-fit: cover;
+    margin: auto;
+}
+.register-container input {
+    box-shadow: none;
+    border-color: #ddd;
+    outline: none;
+    caret-color: var(--main-color);
+}
+.form-control:focus {
+    color: var(--dark-1);
+    border-color: var(--main-color);
+    outline: 0;
+    box-shadow: 0 0 0 .25rem #f372212c;
+}
+.register-container button{
+    border: 1px solid var(--main-color);
+    transition: .3s;
+}
+.register-container button:hover {
+    color: var(--main-color) !important;
+    background-color: #f372210e !important;
 
+}
 
+.register-container  .forgot-link {
+    color: var(--main-color);
+    text-decoration: none !important;
+    transition: .3s;
+    padding: 3px 0;
+    border-bottom: 1px solid transparent;
+    width: fit-content;
+}
+.register-container  .forgot-link:hover {
+    border-bottom: 1px solid var(--main-color);
+}
+@media (min-width: 768px) and (max-width: 992px) {
+    .log-body{
+        padding: 3rem;
+    }
+    .register-container form {
+        padding: 20px !important;
+    }
+    .register-container img {
+        width: 250px;
+    }
+    .register-container img.login-img {
+        width: 300px;
+    }
+}
 
-
-
-
-
-
+@media (max-width: 768px) {
+    .register-container img {
+        display: none;
+    }
+    .register-container img.login-img {
+        display: none;
+    }
+    .log-body{
+        padding: 2rem;
+    }
+    .register-container form {
+        padding: 20px !important;
+    }
+}
+@media (max-width: 500px) {
+   
+    .log-body{
+        padding: .2rem;
+    }
+    .register-container form {
+        padding: 10px !important;
+        margin-bottom: 1rem;
+    }
+    .register-container  .forgot-link {
+        font-size: 14px;
+    }
+    .register-container  span.text-secondary {
+        font-size: 14px;
+        flex-wrap: wrap;
+    }
+}

@@ -13,16 +13,16 @@
             prosperous future for all
         </p>
         <div class="footer-links d-flex gap-3 justify-content-center my-3 my-lg-5">
-            <a href="#" class="wow fadeInUp" data-wow-delay=".2s">
+            <a href="{{ $instagram }}" class="wow fadeInUp" data-wow-delay=".2s">
                 <i class="fa-brands fa-instagram"></i>
             </a>
-            <a href="#" class="wow fadeInUp" data-wow-delay=".3s">
+            <a href="{{ $tiktok }}" class="wow fadeInUp" data-wow-delay=".3s">
                 <i class="fa-brands fa-tiktok"></i>
             </a>
-            <a href="#" class="wow fadeInUp" data-wow-delay=".4s">
+            <a href="{{ $twitter }}" class="wow fadeInUp" data-wow-delay=".4s">
                 <i class="fa-brands fa-twitter"></i>
             </a>
-            <a href="#" class="wow fadeInUp" data-wow-delay=".5s">
+            <a href="{{ $whatsapp }}" class="wow fadeInUp" data-wow-delay=".5s">
                 <i class="fa-brands fa-whatsapp"></i>
             </a>
         </div>

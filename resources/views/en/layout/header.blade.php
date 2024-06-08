@@ -26,6 +26,19 @@
                 <li class="nav-item">
                     <a class="nav-link hvr-underline-from-left text-light fs-5" href="{{ route('en.home') }}#contact">Contact Us</a>
                 </li>
+                @auth
+                    @if (Auth::user()->hasRole('admin'))
+                        <li class="nav-item">
+                            <a class="nav-link hvr-underline-from-right text-light fs-5" href="{{ route('dashboard') }}">Dashboard</a>
+                        </li>
+                    @else
+                        <li class="nav-item"><a href="{{ route('profile.edit') }}" class="nav-link hvr-underline-from-right text-light fs-5">الملف الشخصي</a></li>
+                    @endif
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link hvr-underline-from-right text-light fs-5" href="{{ route('en.register') }}">Register</a>
+                    </li>
+                @endauth
             </ul>
             <a href="{{ route('home') }}" class="lang me-2 me-lg-5 btn btn-light">AR</a>
         </div>

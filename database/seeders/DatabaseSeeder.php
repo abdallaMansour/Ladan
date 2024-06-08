@@ -16,12 +16,13 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        // User::factory()->create([
-        //     'name' => 'admin',
-        //     'email' => 'admin@gmail.com',
-        //     'password' => Hash::make('admin dashboard'),
-        // ]);
+        User::factory()->create([
+            'name' => 'admin',
+            'email' => env('ADMIN_EMAIL', 'admin@app.com'),
+            'password' => Hash::make('admin dashboard'),
+        ]);
 
         $this->call(LaratrustSeeder::class);
+        $this->call(ContactSettingSeeder::class);
     }
 }

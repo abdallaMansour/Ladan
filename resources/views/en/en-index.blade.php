@@ -166,29 +166,45 @@
             <h3 class="title text-dark fs-3 wow fadeIn" data-wow-delay=".2s">Contact US</h3>
             <div class="row py-md-5 py-3 rounded-4 justify-content-center align-items-center">
                 <div class="col-lg-5">
-                    <img src="../assets/images/Call center-cuate.svg" class="wow fadeIn" data-wow-delay=".3s"
-                        width="100%" alt="">
+                    <img src="{{ asset('assets/images/Call center-cuate.svg') }}" class="wow fadeIn" data-wow-delay=".3s" width="100%" alt="">
                 </div>
-                <form class="col-lg-5">
+                <form action="{{ route('message.create') }}" method="POST" class="col-lg-5">
+                    @csrf
+                    @method('PUT')
+                    @if (Session::has('success'))
+                        <span class="text-success mb-2">Message sent successfully</span>
+                    @elseif(Session::has('error'))
+                        <span class="text-danger mb-2">An error occurred sending data</span>
+                    @endif
                     <div class="mb-3 wow fadeInUp" data-wow-delay=".3s">
-                        <label class="form-label text-dark2">Full name</label>
-                        <input type="text" class="form-control" id="name" aria-describedby="emailHelp">
+                        <label class="form-label text-dark2" for="name">Full name</label>
+                        <input value="{{ old('user_name') }}" name="user_name" type="text" class="form-control" id="name" aria-describedby="emailHelp">
+                        @error('user_name')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="mb-3 wow fadeInUp" data-wow-delay=".4s">
-                        <label class="form-label text-dark2">Email</label>
-                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                        <label class="form-label text-dark2" for="email">Email</label>
+                        <input value="{{ old('email') }}" name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                        @error('email')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="mb-3 wow fadeInUp" data-wow-delay=".5s">
-                        <label class="form-label text-dark2">Phone Number</label>
-                        <input type="text" class="form-control" id="phone" aria-describedby="emailHelp">
+                        <label class="form-label text-dark2" for="phone">Phone number</label>
+                        <input value="{{ old('phone') }}" name="phone" type="text" class="form-control" id="phone" aria-describedby="emailHelp">
+                        @error('phone')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="mb-3 wow fadeInUp" data-wow-delay=".6s">
-                        <label class="form-label text-dark2">Request Your Service</label>
-                        <textarea class="form-control" id="servers"></textarea>
+                        <label class="form-label text-dark2" for="service">Request Your Service</label>
+                        <textarea name="message" class="form-control" id="service">{{ old('message') }}</textarea>
+                        @error('message')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
-                    <button type="submit" id="send-btn" onclick="whatsapp()"
-                        class="bg-main w-100 text-center text-white border-0 outline-0 py-2 rounded-2 wow fadeInUp"
-                        data-wow-delay=".7s">Submit</button>
+                    <button type="submit" class="bg-main w-100 text-center text-white border-0 outline-0 py-2 rounded-2 wow fadeInUp" data-wow-delay=".7s">ارسال</button>
                 </form>
             </div>
         </div>

@@ -6,7 +6,7 @@
                 @if (Auth::user()->hasRole('admin'))
                     <!-- Logo -->
                     <div class="shrink-0 flex items-center">
-                        <a href="{{ route('dashboard') }}">
+                        <a href="{{ route('home') }}">
                             <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                         </a>
                     </div>
@@ -18,6 +18,9 @@
                         </x-nav-link>
                         <x-nav-link :href="route('dashboard.users')" :active="request()->routeIs('dashboard.users')">
                             {{ __('Users') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('dashboard.messages')" :active="request()->routeIs('dashboard.messages')">
+                            {{ __('Messages') }}
                         </x-nav-link>
                         <x-nav-link :href="route('dashboard.settings')" :active="request()->routeIs('dashboard.settings')">
                             {{ __('Settings') }}

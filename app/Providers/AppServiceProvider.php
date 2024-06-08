@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\ContactSetting;
+// use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +22,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        View::share('whatsapp', ContactSetting::first()->whatsapp);
+        View::share('twitter', ContactSetting::first()->twitter);
+        View::share('tiktok', ContactSetting::first()->tiktok);
+        View::share('instagram', ContactSetting::first()->instagram);
     }
 }

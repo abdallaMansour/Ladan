@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardController;
 
 // Arabic language
 Route::view('/', 'ar.index')->name('home');
@@ -16,8 +17,11 @@ Route::view('network-details', 'ar.network-details')->name('network-details');
 Route::view('ux-ui-details', 'ar.ux-ui-details')->name('ux-ui-details');
 Route::view('pos-details', 'ar.pos-details')->name('pos-details');
 
+// Mail
+Route::put('message_create', [MessageController::class, 'message_create'])->name('message.create');
+
 // English Language
-Route::prefix('en')->group(function () {
+Route::prefix('en')->middleware('set_lang_en')->group(function () {
     Route::view('/', 'en.en-index')->name('en.home');
     Route::view('about', 'en.en-about')->name('en.about');
 
@@ -33,7 +37,15 @@ Route::prefix('en')->group(function () {
 Route::middleware(['auth', 'verified', 'Admin'])->prefix('dashboard')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/users', [DashboardController::class, 'users'])->name('dashboard.users');
+    Route::get('/messages', [DashboardController::class, 'messages'])->name('dashboard.messages');
     Route::get('/settings', [DashboardController::class, 'settings'])->name('dashboard.settings');
+
+    Route::delete('user_delete/{id}', [DashboardController::class, 'user_delete'])->name('user.delete');
+
+    Route::delete('message_delete/{id}', [MessageController::class, 'message_delete'])->name('message.delete');
+    Route::post('message_response/{name}/{email}', [MessageController::class, 'message_response'])->name('message.response');
+
+    require __DIR__ . '/setting.php';
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {

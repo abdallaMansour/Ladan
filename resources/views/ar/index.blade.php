@@ -166,25 +166,44 @@
                 <div class="col-lg-5">
                     <img src="{{ asset('assets/images/Call center-cuate.svg') }}" class="wow fadeIn" data-wow-delay=".3s" width="100%" alt="">
                 </div>
-                <form class="col-lg-5">
+                <form action="{{ route('message.create') }}" method="POST" class="col-lg-5">
+                    @csrf
+                    @method('PUT')
+                    @if (Session::has('success'))
+                        <span class="text-success mb-2">تم إرسال الرسالة بنجاح</span>
+                    @elseif(Session::has('error'))
+                        <span class="text-danger mb-2">حدث خطا في إرسال البيانات</span>
+                        <span class="text-danger mb-2 d-block">{{ Session::get('error') }}</span>
+                    @endif
                     <div class="mb-3 wow fadeInUp" data-wow-delay=".3s">
-                        <label class="form-label text-dark2">الاسم كامل</label>
-                        <input type="text" class="form-control" id="name" aria-describedby="emailHelp">
+                        <label class="form-label text-dark2" for="name">الاسم كامل</label>
+                        <input value="{{ old('user_name') }}" name="user_name" type="text" class="form-control" id="name" aria-describedby="emailHelp">
+                        @error('user_name')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="mb-3 wow fadeInUp" data-wow-delay=".4s">
-                        <label class="form-label text-dark2">البريد الالكتروني</label>
-                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                        <label class="form-label text-dark2" for="email">البريد الالكتروني</label>
+                        <input value="{{ old('email') }}" name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                        @error('email')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="mb-3 wow fadeInUp" data-wow-delay=".5s">
-                        <label class="form-label text-dark2">رقم التواصل</label>
-                        <input type="text" class="form-control" id="phone" aria-describedby="emailHelp">
+                        <label class="form-label text-dark2" for="phone">رقم التواصل</label>
+                        <input value="{{ old('phone') }}" name="phone" type="text" class="form-control" id="phone" aria-describedby="emailHelp">
+                        @error('phone')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="mb-3 wow fadeInUp" data-wow-delay=".6s">
-                        <label class="form-label text-dark2">اطلب خدمتك</label>
-                        <textarea class="form-control" id="service"></textarea>
+                        <label class="form-label text-dark2" for="service">اطلب خدمتك</label>
+                        <textarea name="message" class="form-control" id="service">{{ old('message') }}</textarea>
+                        @error('message')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
-                    <button type="submit" id="send-btn" onclick="whatsapp()"
-                        class="bg-main w-100 text-center text-white border-0 outline-0 py-2 rounded-2 wow fadeInUp" data-wow-delay=".7s">ارسال</button>
+                    <button type="submit" class="bg-main w-100 text-center text-white border-0 outline-0 py-2 rounded-2 wow fadeInUp" data-wow-delay=".7s">ارسال</button>
                 </form>
             </div>
         </div>

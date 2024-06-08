@@ -27,18 +27,16 @@
                     <a class="nav-link hvr-underline-from-right text-light fs-5" href="{{ route('home') }}#contact">اتصل بنا</a>
                 </li>
                 @auth
-                    <li class="nav-item"><a href="{{ route('profile.edit') }}"  class="nav-link hvr-underline-from-right text-light fs-5">الملف الشخصي</a></li>
                     @if (Auth::user()->hasRole('admin'))
                         <li class="nav-item">
                             <a class="nav-link hvr-underline-from-right text-light fs-5" href="{{ route('dashboard') }}">لوحه التحكم</a>
                         </li>
+                    @else
+                        <li class="nav-item"><a href="{{ route('profile.edit') }}" class="nav-link hvr-underline-from-right text-light fs-5">الملف الشخصي</a></li>
                     @endif
                 @else
                     <li class="nav-item">
                         <a class="nav-link hvr-underline-from-right text-light fs-5" href="{{ route('login') }}">تسجيل الدخول</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link hvr-underline-from-right text-light fs-5" href="{{ route('register') }}">مستخدم جديد</a>
                     </li>
                 @endauth
             </ul>
