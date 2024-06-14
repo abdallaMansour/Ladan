@@ -28,8 +28,8 @@ class EnPasswordResetLinkController extends Controller
         ]);
 
         ResetPassword::createUrlUsing(function (User $user, string $token) use($request) {
-            // return $request->getHost() . '/en/reset-password/'.$token;
-            return 'http://127.0.0.1:8000/en/reset-password/'.$token;
+            return $request->getHost() . '/en/reset-password/'.$token;
+            // return 'http://127.0.0.1:8000/en/reset-password/'.$token;
         });
 
         // We will send the password reset link to this user. Once we have attempted
