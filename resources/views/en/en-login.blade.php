@@ -28,7 +28,7 @@
                 <div class="col-lg-5 col-md-6">
 
 
-                    <form method="POST" action="{{ route('login') }}" class="p-5 rounded-2 w-100">
+                    <form method="POST" action="{{ route('en.login') }}" class="p-5 rounded-2 w-100">
                         @csrf
 
                         <!-- Email Address -->
@@ -51,7 +51,7 @@
 
                         <button type="submit" class="bg-main rounded-2 py-1 py-md-2 text-white outline-0 black w-100 my-3">Log In</button>
 
-                        <a href="{{ route('en.password.reset', 'token_here') }}" class="forgot-link">Forgot password</a>
+                        <a href="{{ route('en.password.request') }}" class="forgot-link">Forgot password</a>
                         <hr class="bg-secondary">
                         <a href="{{ route('en.register') }}" class="forgot-link text-center mx-auto d-block">Don’t have an account?</a>
                     </form>

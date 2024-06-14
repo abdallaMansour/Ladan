@@ -59,7 +59,7 @@
 <script>
     new WOW().init();
 </script>
-<script src="{{ asset('assets/js/custom.js') }}"></script>
+<script src="{{ asset('assets/js/en-custom.js') }}"></script>
 </body>
 
 </html>

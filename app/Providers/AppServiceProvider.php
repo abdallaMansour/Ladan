@@ -2,10 +2,13 @@
 
 namespace App\Providers;
 
-use App\Models\ContactSetting;
+use App\Models\User;
 // use Illuminate\Support\Facades\App;
+use App\Models\ContactSetting;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Auth\Notifications\ResetPassword;
 
 class AppServiceProvider extends ServiceProvider
 {

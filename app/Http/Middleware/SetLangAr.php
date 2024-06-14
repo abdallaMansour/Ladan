@@ -25,7 +25,7 @@ class SetLangAr
         //         file_get_contents($path)
         //     ));
         // }
-        // App::setlocale('ar');
+        App::setlocale('ar');
         return $next($request);
     }
 }

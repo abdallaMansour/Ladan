@@ -1,23 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Password;
+use App\Models\User;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Auth\Notifications\ResetPassword;
 
-class PasswordResetLinkController extends Controller
+class EnPasswordResetLinkController extends Controller
 {
-    /**
-     * Display the password reset link request view.
-     */
-    public function create(): View
-    {
-        return view('ar.forgot-password');
+    public function create (): View {
+        return view('en.en-forgot-password');
     }
 
+    
     /**
      * Handle an incoming password reset link request.
      *
@@ -29,6 +27,11 @@ class PasswordResetLinkController extends Controller
             'email' => ['required', 'email'],
         ]);
 
+        ResetPassword::createUrlUsing(function (User $user, string $token) use($request) {
+            // return $request->getHost() . '/en/reset-password/'.$token;
+            return 'http://127.0.0.1:8000/en/reset-password/'.$token;
+        });
+
         // We will send the password reset link to this user. Once we have attempted
         // to send the link, we will examine the response then see the message we
         // need to show to the user. Finally, we'll send out a proper response.
@@ -37,8 +40,8 @@ class PasswordResetLinkController extends Controller
         );
 
         return $status == Password::RESET_LINK_SENT
-                    ? back()->with('status', 'تم إرسال تفاصيل استعادة كلمة المرور الخاصة بك إلى بريدك الإلكتروني')
+                    ? back()->with('status', 'We have emailed your password reset link.')
                     : back()->withInput($request->only('email'))
-                            ->withErrors(['email' => 'لم يتم العثور على أيّ حسابٍ بهذا العنوان الإلكتروني']);
+                            ->withErrors(['email' => 'We can\'t find a user with that email address.']);
     }
 }

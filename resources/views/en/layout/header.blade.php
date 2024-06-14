@@ -32,11 +32,11 @@
                             <a class="nav-link hvr-underline-from-right text-light fs-5" href="{{ route('dashboard') }}">Dashboard</a>
                         </li>
                     @else
-                        <li class="nav-item"><a href="{{ route('profile.edit') }}" class="nav-link hvr-underline-from-right text-light fs-5">الملف الشخصي</a></li>
+                        <li class="nav-item"><a href="{{ route('en.profile.edit') }}" class="nav-link hvr-underline-from-right text-light fs-5">Profile</a></li>
                     @endif
                 @else
                     <li class="nav-item">
-                        <a class="nav-link hvr-underline-from-right text-light fs-5" href="{{ route('en.register') }}">Register</a>
+                        <a class="nav-link hvr-underline-from-right text-light fs-5" href="{{ route('en.login') }}">Login</a>
                     </li>
                 @endauth
             </ul>

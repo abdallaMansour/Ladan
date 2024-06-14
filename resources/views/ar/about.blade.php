@@ -27,7 +27,7 @@
                 <h3 class=" text-dark fs-3">تعرف على جميع خدماتنا التى نقدمها إليك</h3>
             </div>
             <div class="row align-items-center about">
-                <img src="../assets/images/Startup life-pana.svg" class="col-12 col-lg-6 wow fadeInRight" data-wow-delay=".3s" alt="">
+                <img src="{{ asset('assets/images/Startup life-pana.svg') }}" class="col-12 col-lg-6 wow fadeInRight" data-wow-delay=".3s" alt="">
                 <div class="about-text col-12 col-lg-6">
                     <p class="text-dark2 fs-5 wow fadeInUp" data-wow-delay=".3s">
                         نحن في شركة لدن العربية لتقنية المعلومات، نسعى نحو الابتكار والتطور في الحلول التكنولوجية
@@ -61,7 +61,7 @@
             <div class="row message justify-content-center gap-5 px-4">
                 <div class="col-12 col-lg-5 message-card wow fadeInUp" data-wow-delay=".3s">
                     <div class="img">
-                        <img src="../assets/images/solution.gif" alt="">
+                        <img src="{{ asset('assets/images/solution.gif') }}" alt="">
                         <h3 class="text-dark2">رؤيتنا</h3>
                         <p class="fs-5 text-dark mt-3 mb-4">
                             بتميز وإبداع، نسعى لتقديم حلول تقنية المعلومات
@@ -74,7 +74,7 @@
                 </div>
                 <div class="col-12 col-lg-5 message-card wow fadeInUp" data-wow-delay=".5s">
                     <div class="img">
-                        <img src="../assets/images/paper-plane.gif" alt="">
+                        <img src="{{ asset('assets/images/paper-plane.gif') }}" alt="">
                         <h3 class="text-dark2">رسالتنا</h3>
                         <p class="fs-5 text-dark mt-3 mb-4">
                             أن نكون الشركة الرائدة في مجال تقديم حلول

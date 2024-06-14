@@ -1,67 +1,54 @@
-// close responsive nav on scroll
-let closeResponsive = document.querySelector(".navbar-collapse");
-window.onscroll = () => {
-    closeResponsive.classList.remove("show");
-};
+// typed text in english
 
-// typed text
-const typedTextSpan = document.querySelector(".typed-text");
-const cursorSpan = document.querySelector(".cursor");
+const typedTextSpanEN = document.querySelector(".typed-in-en");
+const cursorSpanEN = document.querySelector(".cursor");
 
-const textArray = ["حلول تقنية", "معلومات متكاملة", "خبرة واسعة"];
-const typingDelay = 100;
-const erasingDelay = 100;
-const newTextDelay = 2000; // Delay between current and next text
-let textArrayIndex = 0;
-let charIndex = 0;
+const textArrayEN = [
+    "technical solutions",
+    "comprehensive information",
+    "extensive experience",
+];
+const typingDelayEN = 100;
+const erasingDelayEN = 100;
+const newTextDelayEN = 2000; // Delay between current and next text
+let textArrayIndexEN = 0;
+let charIndexEN = 0;
 
 function type() {
-    if (charIndex < textArray[textArrayIndex].length) {
-        if (!cursorSpan.classList.contains("typing"))
-            cursorSpan.classList.add("typing");
-        typedTextSpan.textContent +=
-            textArray[textArrayIndex].charAt(charIndex);
-        charIndex++;
-        setTimeout(type, typingDelay);
+    if (charIndexEN < textArrayEN[textArrayIndexEN].length) {
+        if (!cursorSpanEN.classList.contains("typing"))
+            cursorSpanEN.classList.add("typing");
+        typedTextSpanEN.textContent +=
+            textArrayEN[textArrayIndexEN].charAt(charIndexEN);
+        charIndexEN++;
+        setTimeout(type, typingDelayEN);
     } else {
-        cursorSpan.classList.remove("typing");
-        setTimeout(erase, newTextDelay);
+        cursorSpanEN.classList.remove("typing");
+        setTimeout(erase, newTextDelayEN);
     }
 }
 
 function erase() {
-    if (charIndex > 0) {
-        if (!cursorSpan.classList.contains("typing"))
-            cursorSpan.classList.add("typing");
-        typedTextSpan.textContent = textArray[textArrayIndex].substring(
+    if (charIndexEN > 0) {
+        if (!cursorSpanEN.classList.contains("typing"))
+            cursorSpanEN.classList.add("typing");
+        typedTextSpanEN.textContent = textArrayEN[textArrayIndexEN].substring(
             0,
-            charIndex - 1
+            charIndexEN - 1
         );
-        charIndex--;
-        setTimeout(erase, erasingDelay);
+        charIndexEN--;
+        setTimeout(erase, erasingDelayEN);
     } else {
-        cursorSpan.classList.remove("typing");
-        textArrayIndex++;
-        if (textArrayIndex >= textArray.length) textArrayIndex = 0;
-        setTimeout(type, typingDelay + 1100);
+        cursorSpanEN.classList.remove("typing");
+        textArrayIndexEN++;
+        if (textArrayIndexEN >= textArrayEN.length) textArrayIndexEN = 0;
+        setTimeout(type, typingDelayEN + 1100);
     }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
     // On DOM Load initiate the effect
-    if (textArray.length) setTimeout(type, newTextDelay + 250);
-});
-
-// hover cards
-let cards = document.querySelectorAll(".ser-card");
-cards.forEach((card) => {
-    card.onmousemove = function (e) {
-        let x = e.pageX - card.offsetLeft;
-        let y = e.pageY - card.offsetTop;
-
-        card.style.setProperty("--x", x + "px");
-        card.style.setProperty("--y", y + "px");
-    };
+    if (textArrayEN.length) setTimeout(type, newTextDelayEN + 250);
 });
 
 // header particlesJS
@@ -175,5 +162,3 @@ particlesJS("bg", {
     },
     retina_detect: true,
 });
-
-//   requestAnimationFrame();

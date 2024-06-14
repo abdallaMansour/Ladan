@@ -26,22 +26,39 @@
             <h2 class="text-center text-dark black my-4">إعادة تعيين كلمة المرور</h2>
             <div class="row m-0 justify-content-center align-items-center gap-md-4">
                 <div class="col-lg-5 col-md-6">
-                    <form action="" class="p-5 rounded-2 w-100">
 
-                        <div class="mb-4">
-                            <label for="password" class="form-label">كلمة المرور الجديدة</label>
-                            <input type="password" class="form-control" id="password">
+
+
+
+
+
+
+                    
+                    <form method="POST" action="{{ route('password.email') }}" class="p-5 rounded-2 w-100">
+                        <!-- Session Status -->
+                        <x-auth-session-status class="mb-4 alert alert-success" :status="session('status')" />
+                        @csrf
+                        <div class="mb-4 text-sm text-gray-600">
+                            نسيت كلمة السر؟ لا مشكلة. فقط أخبرنا بعنوان بريدك الإلكتروني وسنرسل إليك عبر البريد الإلكتروني رابط إعادة تعيين كلمة المرور الذي سيسمح لك باختيار كلمة مرور جديدة.
                         </div>
+                        <!-- Email Address -->
                         <div class="mb-4">
-                            <label for="password" class="form-label"> تأكيد كلمة المرور</label>
-                            <input type="password" class="form-control" id="password">
+                            <label for="email" class="form-label">البريد الإلكتروني</label>
+                            <input name="email" value="{{ old('email') }}" type="email" class="form-control" id="email" required autofocus />
+                            @error('email')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
 
-                        <button type="submit" class="bg-main rounded-2 py-1 py-md-2 text-white outline-0 black w-100 my-3">تعيين</button>
+                        <button type="submit" class="bg-main rounded-2 py-1 py-md-2 text-white outline-0 black w-100 my-3">رابط إعادة تعيين كلمة المرور للبريد الإلكتروني</button>
 
-
-                        <a href="{{ route('login') }}" class="forgot-link">اذهب لتسجيل الدخول</a>
                     </form>
+
+
+
+
+
+
                 </div>
                 <div class="col-md-5">
                     <img src="{{ asset('assets/images/Forgot password-bro.svg') }}" alt="">

@@ -1016,3 +1016,82 @@ footer .footer-links a:hover {
         flex-wrap: wrap;
     }
 }
+/* update your profile  */
+body.update-body {
+    padding: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--dark-3);
+    flex-direction: column;
+    gap: 50px;
+}
+body.update-body .update-sec {
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 0.125rem 0.25rem rgba(255, 255, 255, 0.5) !important;
+    margin: 0 !important;
+}
+.back-links .back {
+    background-color: var(--main-color);
+    color: #fff;
+    padding: 7px 15px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: .3s;
+}
+.back-links .back:hover {
+    background-color: var(--text-color);
+    color: var(--dark-1);
+}
+.back-links .logout {
+    background-color: var(--text-color);
+    color: var(--dark-1);
+    padding: 7px 15px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.back-links .logout:hover {
+    background-color: var(--main-color);
+    color: #fff;
+}
+@media (min-width:768px) {
+    .back-links {
+        margin-top: 0 !important;
+    }
+}
+@media (max-width:768px) {
+    body.update-body {
+        padding: 2rem;
+    }
+    .back-links .back,
+    .back-links .logout {
+        font-size: 14px;
+    }
+}
+@media (max-width:576px) {
+    body.update-body {
+        padding: 1rem;
+    }
+    .back-links {
+        flex-direction: column;
+
+    }
+    .back-links .back,
+    .back-links .logout {
+        width: 100%;
+        font-size: 14px;
+    }
+    .update-body .update-sec form input ,
+    .update-body .update-sec form label {
+        font-size: 14px;
+    }
+}

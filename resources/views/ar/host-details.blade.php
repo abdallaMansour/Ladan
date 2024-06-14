@@ -24,7 +24,7 @@
     <section id="about-service">
         <div class="container">
             <div class="d-flex align-items-end gap-3 title ser-title wow fadeIn" data-wow-delay=".2s">
-                <img src="../assets/images/data-cloud-unscreen.gif" width="100px" class="my-3" alt="">
+                <img src="{{ asset('assets/images/data-cloud-unscreen.gif') }}" width="100px" class="my-3" alt="">
                 <h5 class="text-dark fs-3 pb-4">استضافة سحابية</h5>
             </div>
 
@@ -173,7 +173,7 @@
             <h3 class="title text-dark fs-3 wow fadeIn" data-wow-delay=".2s">اطلب خدمتك الان</h3>
             <div class="row py-md-5 py-3 rounded-4 justify-content-center align-items-center">
                 <div class="col-lg-5 wow fadeInLeft" data-wow-delay=".3s">
-                    <img src="../assets/images/Call center-cuate.svg" width="100%" alt="">
+                    <img src="{{ asset('assets/images/Call center-cuate.svg') }}" width="100%" alt="">
                 </div>
                 <form class="col-lg-5">
                     <div class="mb-3 wow fadeInUp" data-wow-delay=".3s">

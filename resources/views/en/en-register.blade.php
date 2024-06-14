@@ -89,7 +89,7 @@
             <div class="row m-0 justify-content-center align-items-center gap-md-4">
                 <div class="col-lg-5 col-md-6">
 
-                    <form method="POST" action="{{ route('register') }}" class="p-5 rounded-2 w-100">
+                    <form method="POST" action="{{ route('en.register') }}" class="p-5 rounded-2 w-100">
                         @csrf
 
                         <!-- Name -->

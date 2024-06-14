@@ -168,7 +168,7 @@
                 <div class="col-lg-5">
                     <img src="{{ asset('assets/images/Call center-cuate.svg') }}" class="wow fadeIn" data-wow-delay=".3s" width="100%" alt="">
                 </div>
-                <form action="{{ route('message.create') }}" method="POST" class="col-lg-5">
+                <form action="{{ route('en.message.create') }}" method="POST" class="col-lg-5">
                     @csrf
                     @method('PUT')
                     @if (Session::has('success'))
@@ -204,10 +204,13 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    <button type="submit" class="bg-main w-100 text-center text-white border-0 outline-0 py-2 rounded-2 wow fadeInUp" data-wow-delay=".7s">ارسال</button>
+                    <button type="submit" class="bg-main w-100 text-center text-white border-0 outline-0 py-2 rounded-2 wow fadeInUp" data-wow-delay=".7s">Send</button>
                 </form>
             </div>
         </div>
     </section>
+
+
+    <span id="send-btn"></span>
     <!-- end contact sec  -->
 @endsection

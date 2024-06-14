@@ -23,18 +23,26 @@
     <section id="login">
         <!-- <div class="container"> -->
         <div class="p-1 p-md-4 rounded-2 shadow-sm register-container">
-            <h2 class="text-center text-dark black my-4">تسجيل الدخول</h2>
+            <h2 class="text-center text-dark black my-4">إعادة تعيين كلمة المرور</h2>
             <div class="row m-0 justify-content-center align-items-center gap-md-4">
                 <div class="col-lg-5 col-md-6">
 
-
-                    <form method="POST" action="{{ route('login') }}" class="p-5 rounded-2 w-100">
+                    
+                    
+                    <form method="POST" action="{{ route('password.store') }}" class="p-5 rounded-2 w-100">
                         @csrf
+                        
+                        <!-- Session Status -->
+                        <x-auth-session-status class="mb-4" :status="session('status')" />
+
+                        <!-- Password Reset Token -->
+                        <input type="hidden" name="token" value="{{ $request->route('token') }}">
+
 
                         <!-- Email Address -->
-                        <div class="mb-3">
-                            <label for="email" class="form-label">البريد الالكتروني</label>
-                            <input type="email" name="email" value="{{ old('email') }}" id="email" class="form-control" required>
+                        <div class="mb-4">
+                            <label for="email" class="form-label">البريد الإلكتروني</label>
+                            <input name="email" value="{{ old('email') }}" type="email" class="form-control" id="email" required autofocus />
                             @error('email')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -43,26 +51,28 @@
                         <!-- Password -->
                         <div class="mb-4">
                             <label for="password" class="form-label">كلمة المرور</label>
-                            <input type="password" name="password" class="form-control" id="password">
+                            <input name="password" value="{{ old('password') }}" type="password" class="form-control" id="password" required autofocus />
                             @error('password')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
+                        <!-- Password -->
+                        <div class="mb-4">
+                            <label for="password_confirmation" class="form-label">تأكيد كلمة المرور</label>
+                            <input name="password_confirmation" value="{{ old('password_confirmation') }}" type="password" class="form-control" id="password_confirmation" required autofocus />
+                            @error('password_confirmation')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
 
+                        <button type="submit" class="bg-main rounded-2 py-1 py-md-2 text-white outline-0 black w-100 my-3">إعادة تعيين كلمة المرور</button>
 
-                        <button type="submit" class="bg-main rounded-2 py-1 py-md-2 text-white outline-0 black w-100 my-3">تسجيل الدخول</button>
-
-                        <a href="{{ route('password.request') }}" class="forgot-link">هل نسيت كلمة المرور؟</a>
-
-                        <hr class="bg-secondary">
-                        <a href="{{ route('register') }}" class="forgot-link text-center mx-auto d-block">لا تمتلك حساب؟</a>
                     </form>
-
 
                 </div>
                 <div class="col-md-5">
-                    <img src="{{ asset('assets/images/Mobile login-amico.svg') }}" class="login-img" alt="">
+                    <img src="{{ asset('assets/images/Forgot password-bro.svg') }}" alt="">
                 </div>
             </div>
 
@@ -85,7 +95,7 @@
     <!-- bootstrap  -->
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <!-- animate  -->
-    <script src="{{ asset('assets/js/wow.min.js') }}"></script>
+    <script src="{{ asset('../assets/js/wow.min.js') }}"></script>
     <script>
         new WOW().init();
     </script>

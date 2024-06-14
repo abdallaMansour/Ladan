@@ -26,7 +26,7 @@ class SetLangEn
         //     ));
         // }
 
-        // App::setlocale('en');
+        App::setlocale('en');
         return $next($request);
     }
 }
