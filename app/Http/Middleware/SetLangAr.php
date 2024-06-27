@@ -16,15 +16,6 @@ class SetLangAr
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // $path = base_path('.env');
-
-        // if (file_exists($path)) {
-        //     file_put_contents($path, str_replace(
-        //         'APP_LOCALE=en',
-        //         'APP_LOCALE=ar',
-        //         file_get_contents($path)
-        //     ));
-        // }
         App::setlocale('ar');
         return $next($request);
     }

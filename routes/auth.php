@@ -59,16 +59,3 @@ Route::middleware('set_lang_ar')->group(function () {
             ->name('logout');
     });
 });
-// Route::middleware('set_lang_en')->group(function () {
-
-//     Route::middleware('guest')->group(function () {
-
-//         Route::view('en/register', 'en.en-register')->name('en.register');
-
-//         Route::view('en/login', 'en.en-login')->name('en.login');
-//     });
-
-//     Route::middleware('auth')->group(function () {
-//         Route::view('en/reset-password/{token}', 'en.en-forgot-password')->name('en.password.reset');
-//     });
-// });
