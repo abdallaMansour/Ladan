@@ -20,9 +20,9 @@
                 <li class="nav-item">
                     <a class="nav-link hvr-underline-from-right text-light fs-5" href="{{ route('home') }}#services">خدامتنا</a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link hvr-underline-from-right text-light fs-5" href="{{ route('home') }}#client">عملاؤنا</a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a class="nav-link hvr-underline-from-right text-light fs-5" href="{{ route('home') }}#contact">اتصل بنا</a>
                 </li>

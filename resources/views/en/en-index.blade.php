@@ -54,7 +54,7 @@
     <!-- end about sec  -->
 
     <!-- start services sec  -->
-    <section id="services">
+    <section id="services" class="my-0">
         <div class="position-absolute top-0 start-0 end-0 bottom-0">
             <i class="fa-solid fa-braille sticky1"></i>
             <i class="fa-solid fa-braille sticky2"></i>
@@ -137,7 +137,7 @@
     </section>
     <!-- end services sec  -->
     <!-- start clients section -->
-    <section id="client">
+    {{-- <section id="client">
         <div class="container">
             <h3 class="title text-dark fs-3 wow fadeIn" data-wow-delay=".2s">Our Clients</h3>
             <div class="row justify-content-center gap-3 mt-5 align-items-center m-0">
@@ -157,7 +157,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- end clients section -->
 
     <!-- start contact sec  -->
