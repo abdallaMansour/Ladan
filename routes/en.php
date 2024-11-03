@@ -1,9 +1,9 @@
 <?php
 
+use App\Models\Project;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\MessageController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\DashboardController;
 
 Route::prefix('en')->middleware('set_lang_en')->group(function () {
     // Mail
@@ -12,6 +12,10 @@ Route::prefix('en')->middleware('set_lang_en')->group(function () {
     // English Language
     Route::view('/', 'en.en-index')->name('en.home');
     Route::view('about', 'en.en-about')->name('en.about');
+
+    Route::view('projects', 'en.en-projects', ['projects' => Project::all()])->name('en.projects');
+    Route::get('project-details/{project}', [PageController::class, 'project_details_en'])->name('en.project.details');
+
 
     // Details
     Route::view('host-details', 'en.en-host-details')->name('en.host-details');

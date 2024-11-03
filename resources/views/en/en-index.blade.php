@@ -136,6 +136,34 @@
         </div>
     </section>
     <!-- end services sec  -->
+
+    <!-- start services sec  -->
+    {{-- <section id="services" class="my-0">
+        <div class="position-absolute top-0 start-0 end-0 bottom-0">
+            <i class="fa-solid fa-braille sticky1"></i>
+            <i class="fa-solid fa-braille sticky2"></i>
+        </div>
+        <div class="container">
+            <h3 class="title text-dark fs-3 wow fadeIn" data-wow-delay=".2s">Our Projects</h3>
+            <div>
+                <div class="row justify-content-center gap-5 my-5">
+                    @foreach ($projects as $project)
+                        <div class="col-12 col-md-5 col-lg-3 service hvr-float-shadow wow fadeInUp" data-wow-delay=".2s">
+                            <div class="d-flex align-items-end gap-3 title">
+                                <img src="{{ asset('storage/' . $project->image) }}" width="70px" class="my-3" alt="">
+                                <h5 class="text-dark fs-5 pb-4">{{ $project->name_en }}</h5>
+                            </div>
+                            <p class="my-4 text-dark">{{ $project->description_en }}</p>
+                            <a href="{{ route('en.project.details', $project->id) }}" class="en-learn-more-page text-white fs-6">Learn more</a>
+
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
+        </div>
+    </section> --}}
+    <!-- end services sec  -->
     <!-- start clients section -->
     {{-- <section id="client">
         <div class="container">

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\ContactSetting;
 use App\Models\Message;
+use App\Models\ContactSetting;
 
 class DashboardController extends Controller
 {
@@ -17,7 +17,7 @@ class DashboardController extends Controller
 
     public function users()
     {
-        $users = User::where('email', '!=', env('ADMIN_EMAIL', 'admin@app.com'))->paginate();
+        $users = User::where('email', '!=', auth()->user()->email)->paginate();
         return view('dashboard.users', [
             'users' => $users,
         ]);

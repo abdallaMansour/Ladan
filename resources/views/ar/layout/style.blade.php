@@ -19,6 +19,13 @@
     <!-- favicon -->
     <link rel="shortcut icon" href="{{ asset('/assets/images/favicon.png') }}" type="image/x-icon">
     <title>LADAN</title>
+
+    <style>
+        .link {
+            color: #F37121;
+            padding: 10px
+        }
+    </style>
 </head>
 
 <body class="">

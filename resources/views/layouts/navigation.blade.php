@@ -22,6 +22,9 @@
                         <x-nav-link :href="route('dashboard.messages')" :active="request()->routeIs('dashboard.messages')">
                             {{ __('Messages') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('dashboard.projects')" :active="request()->routeIs('dashboard.projects')">
+                            {{ __('Projects') }}
+                        </x-nav-link>
                         <x-nav-link :href="route('dashboard.settings')" :active="request()->routeIs('dashboard.settings')">
                             {{ __('Settings') }}
                         </x-nav-link>

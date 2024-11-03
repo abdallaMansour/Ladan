@@ -97,7 +97,9 @@ h5 {
 nav .nav-item .active {
     border-bottom: 2px solid var(--main-color);
 }
-
+nav .nav-item .nav-link {
+    font-size: 14px;
+}
 .learn-more {
     position: relative;
     padding: 6px 15px;
@@ -1094,4 +1096,67 @@ body.update-body .update-sec {
     .update-body .update-sec form label {
         font-size: 14px;
     }
+}
+
+
+/* start products page ---------------- */
+#products .col-style {
+    height: 250px;
+    border: 2px solid var(--main-color);
+}
+
+#products .col-style .overlay {
+    transform: translateY(100%) ;
+    background:#232b33da ;
+    transition: .5s;
+}
+#products .col-style .overlay h3 {
+    color: var(--text-color);
+    font-size: 16px;
+} 
+#products .col-style .overlay p {
+    color: var(--text-color);
+    font-size: 14px;
+} 
+#products .col-style .overlay .en-learn-more-page {
+    font-size: 14px;
+    margin: 0;
+}
+#products .col-style .overlay .learn-more {
+    font-size: 14px;
+    margin: 0;
+}
+
+#products .col-style:hover .overlay {
+    transform: translateY(0);
+}
+
+/* start products-details page ---------- */
+#products-details p.details {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-block: 2rem;
+}
+#products-details h6  {
+    font-size: 18px;
+}
+#products-details h6 span {
+    font-family: med;
+}
+#products-details .links a {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid var(--dark-1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .4s;
+}
+#products-details .links a i,
+#products-details .links a svg {
+    color: var(--main-color);
+}
+#products-details .links a:hover {
+    background-color: var(--dark-1);
 }

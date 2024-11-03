@@ -20,6 +20,9 @@
                 <li class="nav-item">
                     <a class="nav-link hvr-underline-from-left text-light fs-5" href="{{ route('en.home') }}#services">Services</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link hvr-underline-from-left text-light fs-5" href="{{ route('en.projects') }}">Projects</a>
+                </li>
                 {{-- <li class="nav-item">
                     <a class="nav-link hvr-underline-from-left text-light fs-5" href="{{ route('en.home') }}#client">Clients</a>
                 </li> --}}

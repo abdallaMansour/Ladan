@@ -30,14 +30,7 @@
                                     <th>{{ $message->id }}</th>
                                     <th>{{ $message->user_name }}</th>
                                     <th>
-                                        <span
-                                            style="
-                                            text-wrap: nowrap;
-                                            display: block;
-                                            overflow: hidden;
-                                            text-overflow: ellipsis;
-                                            max-width: 400px;">{{ $message->message }}afsd;
-                                            fjasd;fl jasd;kfjasd ;lkfjasd;o lfjasdiokf;j l</span>
+                                        <span class="text-ellipsis">{{ $message->message }}</span>
                                     </th>
                                     <th>
                                         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#read_{{ $message->id }}">
