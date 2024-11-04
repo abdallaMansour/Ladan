@@ -24,8 +24,8 @@
         <div class="container">
             <div class="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-3">
                 <!-- start col -->
+                @foreach ($projects as $project)
                 <div class="col">
-                    @foreach ($projects as $project)
                     <div class="col-style position-relative rounded-3 overflow-hidden">
                         <img src="{{ asset('storage/' . $project->image) }}"
                             class="d-block w-100 h-100 object-fit-cover rounded-3" alt="">
@@ -36,8 +36,8 @@
                             <a href="{{ route('en.project.details', $project->id) }}" class="en-learn-more-page text-white">Learn more</a>
                         </div>
                     </div>
-                    @endforeach
                 </div>
+                @endforeach
             </div>
         </div>
     </section>
