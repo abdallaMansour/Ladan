@@ -14,6 +14,8 @@ class ProjectSeeder extends Seeder
     public function run(): void
     {
 
+        mkdir(public_path('storage/project'), 0755, true);
+
         $image = 'project/hero-1.jpg';
         copy(base_path('database/seeders/img_project/hero-1.png'), public_path('storage/project/hero-1.jpg'));
         Project::create([
