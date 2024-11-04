@@ -1140,9 +1140,11 @@ body.update-body .update-sec {
 #products-details h6  {
     font-size: 18px;
 }
+
 #products-details h6 span {
     font-family: med;
 }
+
 #products-details .links a {
     width: 45px;
     height: 45px;
@@ -1153,6 +1155,7 @@ body.update-body .update-sec {
     justify-content: center;
     transition: .4s;
 }
+
 #products-details .links a i,
 #products-details .links a svg {
     color: var(--main-color);
