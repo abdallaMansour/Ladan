@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Project;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Storage;
 
 class ProjectSeeder extends Seeder
 {
@@ -13,12 +12,7 @@ class ProjectSeeder extends Seeder
      */
     public function run(): void
     {
-
-        mkdir(public_path('storage/project'), 0755, true);
-
-        $image = 'project/hero-1.jpg';
-        copy(base_path('database/seeders/img_project/hero-1.png'), public_path('storage/project/hero-1.jpg'));
-        Project::create([
+        $project = Project::create([
             'name_ar' => 'Tuline Technology',
             'name_en' => 'Tuline Technology',
             'description_ar' => 'Tuline Technology هي شركة متخصصة في تطوير البرمجيات تقدم حلولاً متكاملة للشركات والأفراد. تركز الشركة على تصميم وتطوير تطبيقات مخصصة، بالإضافة إلى تقديم خدمات استشارية في مجالات التقنية والبرمجيات. تتميز Tuline Technology بتقديم حلول تلائم احتياجات العملاء، سواء كانت تطبيقات ويب، تطبيقات موبايل، أو أنظمة إدارة أعمال، مع التركيز على الجودة والابتكار لتعزيز الكفاءة وتحقيق أهداف العملاء التقنية.',
@@ -26,12 +20,11 @@ class ProjectSeeder extends Seeder
             'web_link' => 'https://tuline-website.web.app',
             'ios_link' => '',
             'android_link' => '',
-            'image' => $image,
         ]);
+        $project->addMedia(__DIR__ . '/img_project/hero-1.png')->preservingOriginal()->toMediaCollection();
 
-        $image = 'project/hero-2.jpg';
-        copy(base_path('database/seeders/img_project/hero-2.png'), public_path('storage/project/hero-2.jpg'));
-        Project::create([
+
+        $project = Project::create([
             'name_ar' => 'شادي',
             'name_en' => 'Shadi',
             'description_ar' => 'شركة شادي متخصصة في تقديم خدمات الصيانة والتصليح للمعدات والأجهزة المنزلية والتجارية. تسعى الشركة لتوفير حلول صيانة موثوقة وفعالة، مع التركيز على جودة الخدمة ورضا العملاء. يقدم فريق شادي من الفنيين المهرة خدمات متنوعة تشمل صيانة الأجهزة الكهربائية، أنظمة التكييف، السباكة، والنجارة. نحن نضمن تنفيذ كل خدمة بأعلى معايير الاحترافية والكفاءة، مما يجعلنا الخيار المثالي لاحتياجات الصيانة الخاصة بك.',
@@ -39,12 +32,11 @@ class ProjectSeeder extends Seeder
             'web_link' => 'https://company-website1.web.app',
             'ios_link' => '',
             'android_link' => '',
-            'image' => $image,
         ]);
+        $project->addMedia(__DIR__ . '/img_project/hero-2.png')->preservingOriginal()->toMediaCollection();
 
-        $image = 'project/hero-3.jpg';
-        copy(base_path('database/seeders/img_project/hero-3.png'), public_path('storage/project/hero-3.jpg'));
-        Project::create([
+
+        $project = Project::create([
             'name_ar' => 'UPIT',
             'name_en' => 'UPIT',
             'description_ar' => 'UPIT هي شركة متخصصة في تأجير السيرفرات وتقديم حلول الاستضافة المتقدمة للشركات والأفراد. توفر الشركة خيارات متنوعة من السيرفرات القابلة للتخصيص لتناسب احتياجات العملاء المختلفة، مع ضمان الأداء العالي والأمان والاستقرار. تلتزم UPIT بتقديم دعم فني مستمر وخدمات موثوقة لضمان استمرارية عمل العملاء بكفاءة وسلاسة، مما يجعلها شريكاً موثوقاً في مجالات الاستضافة والبنية التحتية الرقمية.',
@@ -52,7 +44,7 @@ class ProjectSeeder extends Seeder
             'web_link' => 'https://upit-company.web.app',
             'ios_link' => '',
             'android_link' => '',
-            'image' => $image,
         ]);
+        $project->addMedia(__DIR__ . '/img_project/hero-3.png')->preservingOriginal()->toMediaCollection();
     }
 }

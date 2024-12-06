@@ -23,8 +23,6 @@ return new class extends Migration
             $table->string('ios_link')->nullable();
             $table->string('android_link')->nullable();
 
-            $table->string('image');
-
             $table->timestamps();
         });
     }

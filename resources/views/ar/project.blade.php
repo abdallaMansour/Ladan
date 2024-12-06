@@ -57,8 +57,6 @@
                 <div class="col">
                     <h5 class="title">{{ $project->name_ar }}</h5>
                     <p class="details">{{ $project->description_ar }}</p>
-                    {{-- <h6 class="">مدة التنفيذ:<span class="mx-2">3أيام</span></h6>
-                    <h6 class="">نوع المشروع:<span class="mx-2">تصميم وتكويد الواجهات الامامية</span></h6> --}}
 
                     <div class="links d-flex gap-3 align-items-center my-4 flex-wrap">
                         @if ($project->web_link)

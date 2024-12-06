@@ -15,7 +15,9 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'set_lang_en' => App\Http\Middleware\SetLangEn::class,
             'set_lang_ar' => App\Http\Middleware\SetLangAr::class,
-            'Admin' => App\Http\Middleware\Admin::class
+            'Admin' => App\Http\Middleware\Admin::class,
+            'hasPermission' => App\http\Middleware\CheckPermission::class,
+            'isAdmin' => App\http\Middleware\IsAdminMiddleware::class
         ]);
         $middleware->append(SetLangAr::class);
     })

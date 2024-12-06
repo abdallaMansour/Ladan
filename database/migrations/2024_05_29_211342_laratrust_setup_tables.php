@@ -31,6 +31,24 @@ class LaratrustSetupTables extends Migration
             $table->timestamps();
         });
 
+        Schema::create('role_translations', function (Blueprint $table) {
+            $table->id();
+            $table->string('display_name')->nullable();
+            $table->unsignedBigInteger('role_id');
+            $table->string('locale')->index();
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
+            $table->unique(['role_id', 'locale']);
+        });
+
+        Schema::create('permission_translations', function (Blueprint $table) {
+            $table->id();
+            $table->string('display_name')->nullable();
+            $table->unsignedBigInteger('permission_id');
+            $table->string('locale')->index();
+            $table->foreign('permission_id')->references('id')->on('permissions')->onDelete('cascade');
+            $table->unique(['permission_id', 'locale']);
+        });
+
         // Create table for associating roles to users and teams (Many To Many Polymorphic)
         Schema::create('role_user', function (Blueprint $table) {
             $table->unsignedBigInteger('role_id');
@@ -81,5 +99,7 @@ class LaratrustSetupTables extends Migration
         Schema::dropIfExists('permissions');
         Schema::dropIfExists('role_user');
         Schema::dropIfExists('roles');
+        Schema::dropIfExists('role_translations');
+        Schema::dropIfExists('permission_translations');
     }
 }
