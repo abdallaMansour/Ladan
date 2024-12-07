@@ -16,7 +16,7 @@ class MessageController extends Controller
     public function message_create(Request $request)
     {
         $request->validate([
-            'user_name' => 'required|string',
+            'name' => 'required|string',
             'email' => 'required|email',
             'phone' => ['required', 'phone'],
             'message' => 'required|string|min:10',
@@ -26,34 +26,40 @@ class MessageController extends Controller
 
             DB::beginTransaction();
 
+            Mail::to('a.mansour.code@gmail.com')->send(new ContactUser(
+                $request->name,
+                $request->email,
+                $request->phone,
+                $request->message
+            ));
             Mail::to('arte@ladantechnology.com.sa')->send(new ContactUser(
-                $request->user_name,
+                $request->name,
                 $request->email,
                 $request->phone,
                 $request->message
             ));
             Mail::to('maged@ladantechnology.com.sa')->send(new ContactUser(
-                $request->user_name,
+                $request->name,
                 $request->email,
                 $request->phone,
                 $request->message
             ));
             Mail::to('info@ladantechnology.com.sa')->send(new ContactUser(
-                $request->user_name,
+                $request->name,
                 $request->email,
                 $request->phone,
                 $request->message
             ));
 
             Message::create([
-                'user_name' => $request->user_name,
+                'name' => $request->name,
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'message' => $request->message
             ]);
 
             DB::commit();
-            return back()->with('success', 'success');
+            return back()->with('success', __('response.success_send_message'));
         } catch (Exception $e) {
             DB::rollback();
             return back()->with('error', $e->getMessage());

@@ -1,3 +1,6 @@
+@php
+    $setting = \App\Models\Setting::first();
+@endphp
 
     <!-- start footer  -->
     <footer class="bg-dark pt-5">
@@ -10,16 +13,16 @@
                 وازدهارًا للجميع
             </p>
             <div class="footer-links d-flex gap-3 justify-content-center my-3 my-lg-5">
-                <a href="{{ $instagram }}" class="wow fadeInUp" data-wow-delay=".2s">
+                <a href="{{ $setting->instagram }}" class="wow fadeInUp" data-wow-delay=".2s">
                     <i class="fa-brands fa-instagram"></i>
                 </a>
-                <a href="{{ $tiktok }}" class="wow fadeInUp" data-wow-delay=".3s">
+                <a href="{{ $setting->tiktok }}" class="wow fadeInUp" data-wow-delay=".3s">
                     <i class="fa-brands fa-tiktok"></i>
                 </a>
-                <a href="{{ $twitter }}" class="wow fadeInUp" data-wow-delay=".4s">
+                <a href="{{ $setting->x }}" class="wow fadeInUp" data-wow-delay=".4s">
                     <i class="fa-brands fa-twitter"></i>
                 </a>
-                <a href="{{ $whatsapp }}" class="wow fadeInUp" data-wow-delay=".5s">
+                <a href="{{ $setting->whatsapp }}" class="wow fadeInUp" data-wow-delay=".5s">
                     <i class="fa-brands fa-whatsapp"></i>
                 </a>
             </div>
@@ -54,6 +57,37 @@
         new WOW().init();
     </script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+        {{-- Toastr here! --}}
+    <!-- Toastr CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000"
+        }
+    </script>
+
+    <script>
+        @if (session('success'))
+            toastr.success("{{ session('success') }}");
+        @elseif (session('error'))
+            toastr.error("{{ session('error') }}");
+        @elseif (session('info'))
+            toastr.info("{{ session('info') }}");
+        @elseif (session('warning'))
+            toastr.warning("{{ session('warning') }}");
+        @endif
+    </script>
 </body>
 
 </html>

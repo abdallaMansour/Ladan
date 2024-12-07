@@ -2,9 +2,9 @@
 @php
     $setting = \App\Models\Setting::first();
 @endphp
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-light-orange elevation-4">
     <!-- Brand Logo -->
-    <a href="https://ladantechnology.com.sa/" class="brand-link">
+    <a href="{{ route('home') }}" class="brand-link">
         <img src="{{ $setting?->getFirstMediaUrl('light') ?: asset('dashboard_assets/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">{{ $setting?->name }}</span>
     </a>
@@ -73,6 +73,17 @@
                                 </li>
                             @endforeach
                         </ul>
+                    </li>
+                @endif
+
+                @if (auth()->user()->hasPermission(config('all_permissions.contact_us')))
+                    <li class="nav-item">
+                        <a href="{{ route('dashboard.pages.messages') }}" class="nav-link @yield('active_messages', '')">
+                            <i class="nav-icon far fa-envelope"></i>
+                            <p>
+                                Message
+                            </p>
+                        </a>
                     </li>
                 @endif
 

@@ -30,7 +30,7 @@
                     <a class="nav-link hvr-underline-from-left text-light fs-5" href="{{ route('en.home') }}#contact">Contact Us</a>
                 </li>
                 @auth
-                    @if (Auth::user()->hasRole('admin'))
+                    @if (Auth::user()->type == 'admin')
                         <li class="nav-item">
                             <a class="nav-link hvr-underline-from-right text-light fs-5" href="{{ route('dashboard') }}">Dashboard</a>
                         </li>

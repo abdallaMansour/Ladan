@@ -25,14 +25,13 @@ class Setting extends Model implements HasMedia, TranslatableContract
     ];
 
     protected $fillable = [
-        'x',
         'name',
         'phone',
         'email',
-        'facebook',
+        'x',
         'instagram',
-        'linkedin',
-        'whatsapp'
+        'whatsapp',
+        'tiktok',
     ];
 
 }

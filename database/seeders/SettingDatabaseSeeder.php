@@ -30,10 +30,9 @@ class SettingDatabaseSeeder extends Seeder
             'phone' => '+966123423123',
             'email' => 'info@ladantechnology.com.sa',
             'whatsapp' => '+96612341232',
-            'facebook' => 'https://facebook.com',
             'instagram' => 'https://instagram.com',
+            'tiktok' => 'https://tiktok.com',
             'x' => 'https://x.com',
-            'linkedin' => 'https://www.linkedin.com',
         ];
     }
 }

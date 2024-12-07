@@ -9,12 +9,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Role\RoleController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Ticket\TicketController;
+use App\Http\Controllers\Message\MessageController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\DashboardProfileController;
 use App\Http\Controllers\Seo\DashboardSeoController;
 use App\Http\Controllers\Setting\DashboardSettingController;
 
-Route::view('/', 'index')->name('dashboard')->middleware(['auth', 'verified', 'isAdmin']);
+Route::view('dashboard', 'index')->name('dashboard')->middleware(['auth', 'verified', 'isAdmin']);
 
 Route::prefix('/dashboard')
     ->as('dashboard.')
@@ -22,7 +23,7 @@ Route::prefix('/dashboard')
     ->group(function () {
 
         // Dashboard
-        Route::view('/', 'index')->name('main');
+        Route::view('/main', 'index')->name('main');
         Route::view('v2', 'index2')->name('v2');
         Route::view('v3', 'index3')->name('v3');
 
@@ -79,6 +80,12 @@ Route::prefix('/dashboard')
         Route::middleware('hasPermission:ticket')->group(function () {
             Route::view('tickets', 'pages.tickets.index', ['tickets' => Ticket::all()])->name('pages.tickets');
             Route::delete('tickets/delete/{id}', [TicketController::class, 'destroy'])->name('tickets.delete');
+        });
+
+        // Messages
+        Route::middleware('hasPermission:contact_us')->group(function () {
+            Route::view('messages', 'pages.messages.index', ['messages' => Message::all()])->name('pages.messages');
+            Route::delete('messages/delete/{id}', [MessageController::class, 'destroy_message'])->name('messages.delete');
         });
 
         // Profile

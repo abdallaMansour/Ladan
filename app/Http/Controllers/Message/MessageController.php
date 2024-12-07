@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Message;
 
 use App\Models\Ticket;
+use App\Models\Message;
 use App\Models\ContactUs;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -44,13 +45,27 @@ class MessageController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
+            'phone' => 'required',
             'message' => 'required',
         ]);
-        ContactUs::create([
+        Message::create([
             'name' => $request->name,
-            'email' => $request->email,
+            'phone' => $request->phone,
             'message' => $request->message,
         ]);
         return response()->json(['message' => 'Contact us message sent successfully'], 200);
+    }
+
+    public function destroy_message($id)
+    {
+        $message = Message::find($id);
+
+        if (!$message) {
+            return back()->with('error', 'Message not found');
+        }
+
+        $message->delete();
+
+        return back()->with('success', 'Message deleted successfully.');
     }
 }

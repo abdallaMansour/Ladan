@@ -23,6 +23,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Laratru
     protected $fillable = [
         'name',
         'email',
+        'phone',
         'password',
     ];
 

@@ -191,16 +191,10 @@
                 <form action="{{ route('message.create') }}" method="POST" class="col-lg-5">
                     @csrf
                     @method('PUT')
-                    @if (Session::has('success'))
-                        <span class="text-success mb-2">تم إرسال الرسالة بنجاح</span>
-                    @elseif(Session::has('error'))
-                        <span class="text-danger mb-2">حدث خطا في إرسال البيانات</span>
-                        <span class="text-danger mb-2 d-block">{{ Session::get('error') }}</span>
-                    @endif
                     <div class="mb-3 wow fadeInUp" data-wow-delay=".3s">
                         <label class="form-label text-dark2" for="name">الاسم كامل</label>
-                        <input value="{{ old('user_name') }}" name="user_name" type="text" class="form-control" id="name" aria-describedby="emailHelp">
-                        @error('user_name')
+                        <input value="{{ old('name') }}" name="name" type="text" class="form-control" id="name" aria-describedby="emailHelp">
+                        @error('name')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>

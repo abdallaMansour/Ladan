@@ -25,9 +25,9 @@ class DashboardSettingController extends Controller
             'name'       => 'nullable|string|max:255',
             'phone'      => 'nullable|string|max:20',
             'email'      => 'nullable|email|max:255',
-            'facebook'   => 'nullable|url|max:255',
             'instagram'  => 'nullable|url|max:255',
-            'linkedin'   => 'nullable|url|max:255',
+            'x'          => 'nullable|url|max:255',
+            'tiktok'     => 'nullable|url|max:255',
             'whatsapp'   => 'nullable|string|max:20',
             'dark_logo'  => 'nullable|image|max:2048',
             'light_logo' => 'nullable|image|max:2048',
@@ -47,10 +47,9 @@ class DashboardSettingController extends Controller
                 'phone'      => $request->phone,
                 'email'      => $request->email,
                 'whatsapp'   => $request->whatsapp,
-                'facebook'   => $request->facebook,
                 'instagram'  => $request->instagram,
+                'tiktok'     => $request->tiktok,
                 'x'          => $request->x,
-                'linkedin'   => $request->linkedin,
             ]);
 
             if ($request->dark_logo) {

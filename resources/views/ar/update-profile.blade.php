@@ -24,7 +24,10 @@
     <!-- links  -->
     <section class="back-links d-flex gap-3 justify-content-end w-100 mb-0">
         <a href="{{ route('home') }}" class="back rounded-2">الرجوع الى الرئيسية</a>
-        <a href="#" class="logout rounded-2">تسجيل الخروج</a>
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button class="logout rounded-2">تسجيل الخروج</button>
+        </form>
     </section>
 
     <section class="update-sec rounded-2">

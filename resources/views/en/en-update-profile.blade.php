@@ -27,7 +27,6 @@
         <!-- Authentication -->
         <form method="POST" action="{{ route('logout') }}">
             @csrf
-
             <button class="btn logout rounded-2">Log Out</button>
         </form>
     </section>

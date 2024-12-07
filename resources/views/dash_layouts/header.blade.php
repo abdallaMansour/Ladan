@@ -32,7 +32,9 @@
 
     @yield('header', '')
 
-<body class="sidebar-mini @yield('layout_style', '')">
+    {{-- <body class="sidebar-mini @yield('layout_style', '')"> --}}
+
+<body class="sidebar-mini layout-fixed layout-footer-fixed accent-orange">
     <div class="wrapper">
 
         <!-- Preloader -->
@@ -41,7 +43,8 @@
         </div>
 
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-@yield('mode', 'light  navbar-white')">
+        {{-- <nav class="main-header navbar navbar-expand navbar-@yield('mode', 'light  navbar-white')"> --}}
+        <nav class="main-header navbar navbar-expand navbar-light  navbar-white">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -125,11 +128,17 @@
                         <i class="fas fa-expand-arrows-alt"></i>
                     </a>
                 </li>
-                {{-- <li class="nav-item">
+                <li class="nav-item">
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button class="btn"><i class="fas fa-sign-out-alt text-danger"></i></button>
+                    </form>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
                         <i class="fas fa-th-large"></i>
                     </a>
-                </li> --}}
+                </li>
             </ul>
         </nav>
         <!-- /.navbar -->
