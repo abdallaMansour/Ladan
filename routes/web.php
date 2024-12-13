@@ -29,13 +29,13 @@ Route::put('message_create', [MessageController::class, 'message_create'])->name
 //     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 //     Route::get('/users', [DashboardController::class, 'users'])->name('dashboard.users');
 //     Route::get('/settings', [DashboardController::class, 'settings'])->name('dashboard.settings');
-    
+
 //     Route::delete('user_delete/{id}', [DashboardController::class, 'user_delete'])->name('user.delete');
-    
+
 //     Route::get('/messages', [DashboardController::class, 'messages'])->name('dashboard.messages');
 //     Route::delete('message_delete/{id}', [MessageController::class, 'message_delete'])->name('message.delete');
 //     Route::post('message_response/{name}/{email}', [MessageController::class, 'message_response'])->name('message.response');
-    
+
 //     Route::get('/projects', [ProjectController::class, 'index'])->name('dashboard.projects');
 
 //     Route::view('project-create', 'dashboard.project.create')->name('project.create');
@@ -48,17 +48,17 @@ Route::put('message_create', [MessageController::class, 'message_create'])->name
 //     require __DIR__ . '/setting.php';
 // });
 
-Route::middleware(['auth', 'verified', 'set_lang_ar'])->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Route::middleware(['auth', 'verified', 'set_lang_ar'])->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 
-Route::middleware(['auth', 'verified', 'set_lang_en'])->group(function () {
-    Route::get('en/profile', [EnProfileController::class, 'edit'])->name('en.profile.edit');
-    Route::patch('en/profile', [EnProfileController::class, 'update'])->name('en.profile.update');
-    Route::delete('en/profile', [EnProfileController::class, 'destroy'])->name('en.profile.destroy');
-});
+// Route::middleware(['auth', 'verified', 'set_lang_en'])->group(function () {
+//     Route::get('en/profile', [EnProfileController::class, 'edit'])->name('en.profile.edit');
+//     Route::patch('en/profile', [EnProfileController::class, 'update'])->name('en.profile.update');
+//     Route::delete('en/profile', [EnProfileController::class, 'destroy'])->name('en.profile.destroy');
+// });
 
 require __DIR__ . '/en.php';
 require __DIR__ . '/auth.php';

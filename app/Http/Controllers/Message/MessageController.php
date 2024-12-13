@@ -11,31 +11,6 @@ use App\Http\Controllers\Controller;
 class MessageController extends Controller
 {
     /**
-     * Store Ticket message
-     * 
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function store_ticket(Request $request)
-    {
-        $request->validate([
-            'message' => 'required',
-            'file' => 'nullable|file',
-        ]);
-
-        $ticket = Ticket::create([
-            'user_id' => auth()->guard('sanctum')->id(),
-            'message' => $request->message,
-        ]);
-
-        if ($request->hasFile('file')) {
-            $ticket->addMedia($request->file('file'))->toMediaCollection();
-        }
-
-        return response()->json(['message' => 'Ticket message sent successfully'], 200);
-    }
-
-
-    /**
      * Store contact us message
      * 
      * @return \Illuminate\Http\JsonResponse

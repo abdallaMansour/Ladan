@@ -17,7 +17,7 @@
                 <img src="{{ auth()->user()->getFirstMediaUrl() ?: asset('images/default-user.jpg') }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="{{ route('dashboard.pages.profile') }}" class="d-block">{{ auth()->user()->name }}</a>
+                <a href="{{ route('profile.edit') }}" class="d-block">{{ auth()->user()->name }}</a>
             </div>
         </div>
 
@@ -25,12 +25,14 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-                <li class="nav-item">
-                    <a href="{{ route('dashboard.main') }}" class="nav-link @yield('active_link_main', '')">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
+                @if (auth()->user()->type == 'admin')
+                    <li class="nav-item">
+                        <a href="{{ route('dashboard.main') }}" class="nav-link @yield('active_link_main', '')">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                @endif
 
                 @if (auth()->user()->hasPermission(config('all_permissions.admin')))
                     <li class="nav-item">
@@ -108,10 +110,27 @@
                         </a>
                     </li>
                 @endif
+
+
+
+
+
+
+                {{-- User bar --}}
+
+                @if (auth()->user()->type == 'user')
+                    <li class="nav-item">
+                        <a href="{{ route('pages.tickets') }}" class="nav-link @yield('active_ticket', '')">
+                            <i class="nav-icon fas fa-cogs"></i>
+                            <p>
+                                Ticket
+                            </p>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
 </aside>
-

@@ -10,10 +10,10 @@ use App\Http\Controllers\Role\RoleController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Ticket\TicketController;
 use App\Http\Controllers\Message\MessageController;
-use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\DashboardProfileController;
 use App\Http\Controllers\Seo\DashboardSeoController;
 use App\Http\Controllers\Setting\DashboardSettingController;
+use App\Http\Controllers\DashboardAuth\NewPasswordController;
 
 Route::view('dashboard', 'index')->name('dashboard')->middleware(['auth', 'verified', 'isAdmin']);
 
@@ -87,11 +87,6 @@ Route::prefix('/dashboard')
             Route::view('messages', 'pages.messages.index', ['messages' => Message::all()])->name('pages.messages');
             Route::delete('messages/delete/{id}', [MessageController::class, 'destroy_message'])->name('messages.delete');
         });
-
-        // Profile
-        Route::view('dashboard/profile', 'pages.profile.update')->name('pages.profile');
-        Route::post('dashboard/profile', [DashboardProfileController::class, 'update'])->name('profile.update');
-        Route::post('dashboard/profile/change-password', [NewPasswordController::class, 'change'])->name('profile.password.update');
 
         // layouts
         Route::view('layout', 'pages.layout.top-nav')->name('pages.layout-nav');
@@ -188,8 +183,15 @@ Route::prefix('/dashboard')
         Route::view('search/enhanced', 'pages.search.enhanced')->name('pages.search.enhanced');
     });
 
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
+Route::middleware('auth')->group(function () {
+
+
+    // Profile
+    Route::view('profile', 'pages.profile.update')->name('profile.edit');
+    Route::post('profile', [DashboardProfileController::class, 'update'])->name('profile.update');
+    Route::post('profile/change-password', [NewPasswordController::class, 'change'])->name('profile.password.update');
+
+    // User Tickets
+    Route::view('tickets', 'pages.tickets.create')->name('pages.tickets');
+    Route::post('tickets/create', [TicketController::class, 'store_ticket'])->name('tickets.store');
+});

@@ -12,13 +12,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Admins</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Admins</li>
-                        </ol>
+                        <h1>{{ auth()->user()->name }}</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -39,7 +33,7 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form id="quickForm" action="{{ route('dashboard.profile.update') }}" method="POST" enctype="multipart/form-data">
+                            <form id="quickForm" action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
@@ -102,7 +96,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">Change Password</h3>
                             </div>
-                            <form action="{{ route('dashboard.profile.password.update') }}" method="POST" class="card-body">
+                            <form action="{{ route('profile.password.update') }}" method="POST" class="card-body">
                                 @csrf
                                 <input name="old_password" class="form-control" type="password" placeholder="Old Password">
                                 @error('old_password')
