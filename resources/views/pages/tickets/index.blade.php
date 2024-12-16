@@ -1,6 +1,7 @@
 @extends('dash_layouts.app')
 
 @section('active_tickets', 'active')
+@section('active_nav_ticket', 'active')
 @section('mode', 'dark')
 @section('layout_style', 'dark-mode layout-fixed layout-navbar-fixed layout-footer-fixed')
 
@@ -32,7 +33,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title d-flex justify-content-between align-items-center w-100">Admin table</h3>
+                                <h3 class="card-title d-flex justify-content-between align-items-center w-100">Count of tickets : {{ $tickets->count() }}</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -40,45 +41,65 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Name</th>
-                                            <th>E-mail</th>
-                                            <th>Phone</th>
-                                            <th>message</th>
-                                            <th>File</th>
-                                            <th>Date</th>
-                                            <th>Control</th>
+                                            @if (auth()->user()->type == 'user')
+                                                <th>message</th>
+                                                <th>File</th>
+                                                <th>Date</th>
+                                            @else
+                                                <th>Name</th>
+                                                <th>E-mail</th>
+                                                <th>Phone</th>
+                                                <th>message</th>
+                                                <th>File</th>
+                                                <th>Date</th>
+                                                <th>Control</th>
+                                            @endif
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($tickets as $ticket)
                                             <tr>
                                                 <td>{{ $ticket->id }}</td>
-                                                <td>{{ $ticket->user->name }}</td>
-                                                <td>{{ $ticket->user->email }}</td>
-                                                <td>{{ $ticket->user->phone }}</td>
-                                                <td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width:100px">{{ $ticket->message }}</td>
-                                                <td>
-                                                    <div>
-                                                        @if ($ticket->getFirstMediaUrl())
-                                                            <a href="{{ $ticket->getFirstMediaUrl() }}" download>Download file</a>
-                                                        @else
-                                                            <a class="text-secondary">No file uploaded</a>
-                                                        @endif
-                                                    </div>
-                                                </td>
-                                                <td>{{ $ticket->created_at?->diffForHumans() ?: 'No date' }}</td>
-                                                <td>
-                                                    <div class="btn-group w-100">
-                                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#show-{{ $ticket->id }}">
-                                                            Show
-                                                        </button>
-                                                        <form action="{{ route('dashboard.tickets.delete', $ticket->id) }}" method="POST" class="w-100">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button class="btn btn-sm btn-danger w-100">Delete</button>
-                                                        </form>
-                                                    </div>
-                                                </td>
+                                                @if (auth()->user()->type == 'user')
+                                                    <td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width:100px">{{ $ticket->message }}</td>
+                                                    <td>
+                                                        <div>
+                                                            @if ($ticket->getFirstMediaUrl())
+                                                                <a href="{{ $ticket->getFirstMediaUrl() }}" download>Download file</a>
+                                                            @else
+                                                                <a class="text-secondary">No file uploaded</a>
+                                                            @endif
+                                                        </div>
+                                                    </td>
+                                                    <td>{{ $ticket->created_at?->diffForHumans() ?: 'No date' }}</td>
+                                                @else
+                                                    <td>{{ $ticket->user->name }}</td>
+                                                    <td>{{ $ticket->user->email }}</td>
+                                                    <td>{{ $ticket->user->phone }}</td>
+                                                    <td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width:100px">{{ $ticket->message }}</td>
+                                                    <td>
+                                                        <div>
+                                                            @if ($ticket->getFirstMediaUrl())
+                                                                <a href="{{ $ticket->getFirstMediaUrl() }}" download>Download file</a>
+                                                            @else
+                                                                <a class="text-secondary">No file uploaded</a>
+                                                            @endif
+                                                        </div>
+                                                    </td>
+                                                    <td>{{ $ticket->created_at?->diffForHumans() ?: 'No date' }}</td>
+                                                    <td>
+                                                        <div class="btn-group w-100">
+                                                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#show-{{ $ticket->id }}">
+                                                                Show
+                                                            </button>
+                                                            <form action="{{ route('dashboard.tickets.delete', $ticket->id) }}" method="POST" class="w-100">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button class="btn btn-sm btn-danger w-100">Delete</button>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                @endif
                                             </tr>
 
 
@@ -122,13 +143,19 @@
                                     <tfoot>
                                         <tr>
                                             <th>#</th>
-                                            <th>Name</th>
-                                            <th>E-mail</th>
-                                            <th>Phone</th>
-                                            <th>message</th>
-                                            <th>File</th>
-                                            <th>Date</th>
-                                            <th>Control</th>
+                                            @if (auth()->user()->type == 'user')
+                                                <th>message</th>
+                                                <th>File</th>
+                                                <th>Date</th>
+                                            @else
+                                                <th>Name</th>
+                                                <th>E-mail</th>
+                                                <th>Phone</th>
+                                                <th>message</th>
+                                                <th>File</th>
+                                                <th>Date</th>
+                                                <th>Control</th>
+                                            @endif
                                         </tr>
                                     </tfoot>
                                 </table>

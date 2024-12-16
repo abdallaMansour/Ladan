@@ -5,6 +5,7 @@ use App\Models\Ticket;
 use App\Models\Message;
 use App\Models\Setting;
 use App\Models\Permission;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Role\RoleController;
 use App\Http\Controllers\Admin\AdminController;
@@ -184,14 +185,13 @@ Route::prefix('/dashboard')
     });
 
 Route::middleware('auth')->group(function () {
-
-
     // Profile
     Route::view('profile', 'pages.profile.update')->name('profile.edit');
     Route::post('profile', [DashboardProfileController::class, 'update'])->name('profile.update');
     Route::post('profile/change-password', [NewPasswordController::class, 'change'])->name('profile.password.update');
 
     // User Tickets
-    Route::view('tickets', 'pages.tickets.create')->name('pages.tickets');
-    Route::post('tickets/create', [TicketController::class, 'store_ticket'])->name('tickets.store');
+    Route::get('tickets', fn () => view('pages.tickets.index', ['tickets' => Ticket::where('user_id', auth()->id())->get()]))->name('pages.tickets');
+    Route::view('tickets/create', 'pages.tickets.create')->name('pages.tickets.create');
+    Route::post('tickets/store', [TicketController::class, 'store_ticket'])->name('tickets.store');
 });

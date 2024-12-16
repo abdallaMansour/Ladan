@@ -119,13 +119,30 @@
                 {{-- User bar --}}
 
                 @if (auth()->user()->type == 'user')
-                    <li class="nav-item">
-                        <a href="{{ route('pages.tickets') }}" class="nav-link @yield('active_ticket', '')">
+                    <li class="nav-item menu">
+                        <a href="#" class="nav-link @yield('active_nav_ticket', '')">
                             <i class="nav-icon fas fa-cogs"></i>
                             <p>
-                                Ticket
+                                Tickets
+                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('pages.tickets') }}" class="nav-link @yield('active_ticket', '')">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Show all</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('pages.tickets.create') }}" class="nav-link @yield('active_create_ticket', '')">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Create Ticket</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 @endif
             </ul>
