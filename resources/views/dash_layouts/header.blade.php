@@ -56,46 +56,48 @@
             <ul class="navbar-nav ml-auto">
 
                 <!-- Messages Dropdown Menu -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-comments"></i>
-                        @if ($contact_us->where('read', 0)->count() > 0)
-                            <span class="badge badge-danger navbar-badge">
-                                {{ $contact_us->where('read', 0)->count() }}
-                            </span>
-                        @endif
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit;right: 0px;max-height: 333px;overflow: auto;">
-                        @foreach ($contact_us as $message)
-                            <a href="#" class="dropdown-item">
-                                <!-- Message Start -->
-                                <div class="media">
-                                    <div class="media-body">
-                                        <h3 class="dropdown-item-title">
-                                            {{ $message->name }}
-                                        </h3>
-                                        <h3 class="dropdown-item-title text-sm">
-                                            {{ $message->email }}
-                                        </h3>
-                                        <p class="text-sm @if ($message->read) text-muted @endif">{{ $message->message }}</p>
-                                        <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> {{ $message->created_at?->diffForHumans() }}</p>
+                @if (auth()->user()->type != 'user')
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" data-toggle="dropdown" href="#">
+                            <i class="far fa-comments"></i>
+                            @if ($contact_us->where('read', 0)->count() > 0)
+                                <span class="badge badge-danger navbar-badge">
+                                    {{ $contact_us->where('read', 0)->count() }}
+                                </span>
+                            @endif
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit;right: 0px;max-height: 333px;overflow: auto;">
+                            @foreach ($contact_us as $message)
+                                <a href="#" class="dropdown-item">
+                                    <!-- Message Start -->
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h3 class="dropdown-item-title">
+                                                {{ $message->name }}
+                                            </h3>
+                                            <h3 class="dropdown-item-title text-sm">
+                                                {{ $message->email }}
+                                            </h3>
+                                            <p class="text-sm @if ($message->read) text-muted @endif">{{ $message->message }}</p>
+                                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> {{ $message->created_at?->diffForHumans() }}</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- Message End -->
-                            </a>
-                            <div class="dropdown-divider"></div>
-                        @endforeach
-                        @if ($contact_us->count() > 0)
-                            <form action="{{ route('dashboard.contact_us.clear') }}" method="POST" class="w-100">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm w-100">Clear all messages</button>
-                            </form>
-                        @else
-                            <a href="#" class="dropdown-item dropdown-footer">No Messages</a>
-                        @endif
-                    </div>
-                </li>
+                                    <!-- Message End -->
+                                </a>
+                                <div class="dropdown-divider"></div>
+                            @endforeach
+                            @if ($contact_us->count() > 0)
+                                <form action="{{ route('dashboard.contact_us.clear') }}" method="POST" class="w-100">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm w-100">Clear all messages</button>
+                                </form>
+                            @else
+                                <a href="#" class="dropdown-item dropdown-footer">No Messages</a>
+                            @endif
+                        </div>
+                    </li>
+                @endif
                 <!-- Notifications Dropdown Menu -->
                 {{-- <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
@@ -134,11 +136,11 @@
                         <button class="btn"><i class="fas fa-sign-out-alt text-danger"></i></button>
                     </form>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
                         <i class="fas fa-th-large"></i>
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </nav>
         <!-- /.navbar -->

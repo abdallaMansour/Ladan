@@ -1,6 +1,6 @@
 @extends('dash_layouts.app')
 
-@section('active_tickets', 'active')
+@section('active_ticket', 'active')
 @section('active_nav_ticket', 'active')
 @section('mode', 'dark')
 @section('layout_style', 'dark-mode layout-fixed layout-navbar-fixed layout-footer-fixed')

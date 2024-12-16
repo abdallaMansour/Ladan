@@ -91,7 +91,7 @@
 
                 @if (auth()->user()->hasPermission(config('all_permissions.ticket')))
                     <li class="nav-item">
-                        <a href="{{ route('dashboard.pages.tickets') }}" class="nav-link @yield('active_tickets', '')">
+                        <a href="{{ route('dashboard.pages.tickets') }}" class="nav-link @yield('active_ticket', '')">
                             <i class="nav-icon fas fa-ticket-alt"></i>
                             <p>
                                 Tickets
