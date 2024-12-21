@@ -7,4 +7,5 @@ return [
     'role' => 'role',
     'seo' => 'seo',
     'ticket' => 'ticket',
+    'category' => 'category',
 ];

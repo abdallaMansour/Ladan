@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tickets', function (Blueprint $table) {
+        Schema::create('category_translations', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('category_id')->constrained('categories', 'id')->cascadeOnDelete();
 
-            $table->longText('message');
-            $table->foreignId('category')->constrained('categories');
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('name');
 
-            $table->timestamps();
+            $table->string('locale')->index();
+            $table->unique(['category_id', 'locale']);
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tickets');
+        Schema::dropIfExists('category_tralslations');
     }
 };

@@ -89,6 +89,32 @@
                     </li>
                 @endif
 
+                @if (auth()->user()->hasPermission(config('all_permissions.category')))
+                    <li class="nav-item menu">
+                        <a href="#" class="nav-link @yield('active_nav_category', '')">
+                            <i class="nav-icon fas fa-bars"></i>
+                            <p>
+                                Category
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('dashboard.pages.categories') }}" class="nav-link @yield('active_link_categories', '')">
+                                        <i class="fas fa-tasks nav-icon"></i>
+                                        <p>All Categories</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('dashboard.categories.create') }}" class="nav-link @yield('active_link_add_category', '')">
+                                        <i class="fas fa-plus nav-icon"></i>
+                                        <p>Add Categories</p>
+                                    </a>
+                                </li>
+                        </ul>
+                    </li>
+                @endif
+
                 @if (auth()->user()->hasPermission(config('all_permissions.ticket')))
                     <li class="nav-item">
                         <a href="{{ route('dashboard.pages.tickets') }}" class="nav-link @yield('active_ticket', '')">

@@ -4,8 +4,8 @@ use App\Models\Role;
 use App\Models\Ticket;
 use App\Models\Message;
 use App\Models\Setting;
+use App\Models\Category;
 use App\Models\Permission;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Role\RoleController;
 use App\Http\Controllers\Admin\AdminController;
@@ -13,6 +13,7 @@ use App\Http\Controllers\Ticket\TicketController;
 use App\Http\Controllers\Message\MessageController;
 use App\Http\Controllers\DashboardProfileController;
 use App\Http\Controllers\Seo\DashboardSeoController;
+use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Setting\DashboardSettingController;
 use App\Http\Controllers\DashboardAuth\NewPasswordController;
 
@@ -75,6 +76,14 @@ Route::prefix('/dashboard')
                 Message::truncate();
                 return back()->with('message', 'Contact us messages cleared successfully');
             })->name('contact_us.clear');
+        });
+
+        // Category
+        Route::middleware('hasPermission:category')->group(function () {
+            Route::view('categories', 'pages.categories.index', ['categories' => Category::all()])->name('pages.categories');
+            Route::view('categories/create', 'pages.categories.create')->name('categories.create');
+            Route::post('categories/store', [CategoryController::class, 'store'])->name('categories.store');
+            Route::delete('categories/delete/{id}', [CategoryController::class, 'destroy'])->name('categories.delete');
         });
 
         // Tickets
@@ -191,7 +200,7 @@ Route::middleware('auth')->group(function () {
     Route::post('profile/change-password', [NewPasswordController::class, 'change'])->name('profile.password.update');
 
     // User Tickets
-    Route::get('tickets', fn () => view('pages.tickets.index', ['tickets' => Ticket::where('user_id', auth()->id())->get()]))->name('pages.tickets');
+    Route::get('tickets', fn() => view('pages.tickets.index', ['tickets' => Ticket::where('user_id', auth()->id())->get()]))->name('pages.tickets');
     Route::view('tickets/create', 'pages.tickets.create')->name('pages.tickets.create');
     Route::post('tickets/store', [TicketController::class, 'store_ticket'])->name('tickets.store');
 });

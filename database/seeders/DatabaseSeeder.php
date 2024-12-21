@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionsSeeder::class);
         $this->call(SeoDatabaseSeeder::class);
         $this->call(SettingDatabaseSeeder::class);
+        $this->call(CategorySeeder::class);
 
         $dev = User::factory()->create([
             'name' => 'Developer',

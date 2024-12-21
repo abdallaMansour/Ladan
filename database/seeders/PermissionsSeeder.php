@@ -60,6 +60,15 @@ class PermissionsSeeder extends Seeder
     {
         return [
             [
+                'name' => 'category',
+                'display_name_ar' => 'الفئة',
+                'display_name_en' => 'Category',
+                'translations' => [
+                    ['locale' => 'ar', 'display_name' => 'الفئة'],
+                    ['locale' => 'en', 'display_name' => 'Category'],
+                ],
+            ],
+            [
                 'name' => 'ticket',
                 'display_name_ar' => 'التذاكر',
                 'display_name_en' => 'ticket',
