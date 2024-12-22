@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
 
             $table->longText('message');
-            $table->foreignId('category')->constrained('categories');
+            $table->foreignId('category_id')->constrained('categories');
+            $table->enum('priority', ['urgent', 'medium', 'low'])->default('low');
+            $table->enum('status', ['open', 'under_review', 'resolved', 'closed'])->default('open');
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
 
             $table->timestamps();

@@ -20,11 +20,15 @@ class TicketController extends Controller
             DB::beginTransaction();
             $request->validate([
                 'message' => 'required',
+                'category_id' => 'required|exists:categories,id',
+                'priority' => 'required|in:urgent,medium,low',
                 'file' => 'nullable|file',
             ]);
 
             $ticket = Ticket::create([
                 'user_id' => auth()->id(),
+                'category_id' => $request->category_id,
+                'priority' => $request->priority,
                 'message' => $request->message,
             ]);
 

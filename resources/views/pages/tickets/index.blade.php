@@ -41,15 +41,18 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
+                                            <th>Status</th>
+                                            <th>Priority</th>
+                                            <th>Category</th>
                                             @if (auth()->user()->type == 'user')
-                                                <th>message</th>
+                                                <th>Message</th>
                                                 <th>File</th>
                                                 <th>Date</th>
                                             @else
                                                 <th>Name</th>
                                                 <th>E-mail</th>
                                                 <th>Phone</th>
-                                                <th>message</th>
+                                                <th>Message</th>
                                                 <th>File</th>
                                                 <th>Date</th>
                                                 <th>Control</th>
@@ -60,6 +63,9 @@
                                         @foreach ($tickets as $ticket)
                                             <tr>
                                                 <td>{{ $ticket->id }}</td>
+                                                <td>{{ $ticket->status }}</td>
+                                                <td>{{ $ticket->priority }}</td>
+                                                <td>{{ $ticket->category?->name }}</td>
                                                 @if (auth()->user()->type == 'user')
                                                     <td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width:100px">{{ $ticket->message }}</td>
                                                     <td>
@@ -143,6 +149,9 @@
                                     <tfoot>
                                         <tr>
                                             <th>#</th>
+                                            <th>Status</th>
+                                            <th>Priority</th>
+                                            <th>Category</th>
                                             @if (auth()->user()->type == 'user')
                                                 <th>message</th>
                                                 <th>File</th>

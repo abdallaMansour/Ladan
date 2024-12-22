@@ -51,6 +51,30 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <label for="exampleSelectBorder">Category</label>
+                                        <select class="custom-select form-control-border" name="category_id" id="exampleSelectBorder">
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('category')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleSelectBorder">Priority</label>
+                                        <select class="custom-select form-control-border" name="priority" id="exampleSelectBorder">
+                                            <option value="urgent" @selected(old('priority') == 'urgent')>Urgent</option>
+                                            <option value="medium" @selected(old('priority') == 'medium')>Medium</option>
+                                            <option value="low" @selected(old('priority') == 'low')>Low</option>
+                                        </select>
+                                        @error('priority')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
                                         <label for="file">Upload file</label>
                                         <div class="input-group">
                                             <div class="custom-file">

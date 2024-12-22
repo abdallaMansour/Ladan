@@ -126,8 +126,9 @@
                     </div>
                 </li> --}}
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                        <i class="fas fa-expand-arrows-alt"></i>
+                    <a class="nav-link"href="{{ LaravelLocalization::getLocalizedURL(App::getLocale() == 'en' ? 'ar' : 'en', null, [], true) }}" role="button">
+                        <i class="fas fa-globe-americas"></i>
+                        {{ App::currentLocale() == 'en' ? 'AR' : 'EN' }}
                     </a>
                 </li>
                 <li class="nav-item">

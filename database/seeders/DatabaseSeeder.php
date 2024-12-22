@@ -61,20 +61,17 @@ class DatabaseSeeder extends Seeder
 
         $info = User::factory()->create([
             'name' => 'Info',
-            'email' => 'info@sedra.sa',
+            'email' => 'info@info.com',
         ]);
 
         $info->syncRoles(['super_admin']);
 
         $info->save();
 
-        $wali = User::factory()->create([
-            'name' => 'Waly',
-            'email' => 'waly@sedra.sa',
+        User::factory()->create([
+            'name' => 'user',
+            'email' => 'user@user.com',
+            'type' => 'user',
         ]);
-
-        $wali->syncRoles(['super_admin']);
-
-        $wali->save();
     }
 }

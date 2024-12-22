@@ -17,9 +17,14 @@ return Application::configure(basePath: dirname(__DIR__))
             'set_lang_ar' => App\Http\Middleware\SetLangAr::class,
             'Admin' => App\Http\Middleware\Admin::class,
             'hasPermission' => App\Http\Middleware\CheckPermission::class,
-            'isAdmin' => App\Http\Middleware\IsAdminMiddleware::class
+            'isAdmin' => App\Http\Middleware\IsAdminMiddleware::class,
+            'localize'                => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,
+            'localizationRedirect'    => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter::class,
+            'localeSessionRedirect'   => \Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect::class,
+            'localeCookieRedirect'    => \Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect::class,
+            'localeViewPath'          => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
         ]);
-        $middleware->append(SetLangAr::class);
+        // $middleware->append(SetLangAr::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
