@@ -34,17 +34,6 @@
                     </li>
                 @endif
 
-                @if (auth()->user()->hasPermission(config('all_permissions.admin')))
-                    <li class="nav-item">
-                        <a href="{{ route('dashboard.pages.admins') }}" class="nav-link @yield('active_admins', '')">
-                            <i class="nav-icon fas fa-user-tie"></i>
-                            <p>
-                                {{ __('sidebar.admins') }}
-                            </p>
-                        </a>
-                    </li>
-                @endif
-
                 @if (auth()->user()->hasPermission(config('all_permissions.role')))
                     <li class="nav-item">
                         <a href="{{ route('dashboard.pages.roles') }}" class="nav-link @yield('active_roles', '')">
@@ -67,6 +56,32 @@
                     </li>
                 @endif
 
+                @if (auth()->user()->hasPermission(config('all_permissions.admin')))
+                    <li class="nav-item menu">
+                        <a href="#" class="nav-link @yield('active_admins', '')">
+                            <i class="nav-icon fas fa-user-tie"></i>
+                            <p>
+                                {{ __('sidebar.admins') }}
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.pages.admins') }}" class="nav-link @yield('active_link_admin', '')">
+                                    <i class="fas fa-tasks nav-icon"></i>
+                                    <p>{{ __('sidebar.admins') }}</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.pages.admins.create') }}" class="nav-link @yield('active_link_add_admin', '')">
+                                    <i class="fas fa-plus nav-icon"></i>
+                                    <p>{{ __('sidebar.add_admin') }}</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
+
                 @if (auth()->user()->hasPermission(config('all_permissions.employee')))
                     <li class="nav-item menu">
                         <a href="#" class="nav-link @yield('active_nav_employee', '')">
@@ -77,18 +92,18 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('dashboard.pages.employees') }}" class="nav-link @yield('active_link_employees', '')">
-                                        <i class="fas fa-tasks nav-icon"></i>
-                                        <p>{{ __('sidebar.all_employees') }}</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('dashboard.employees.create') }}" class="nav-link @yield('active_link_add_employee', '')">
-                                        <i class="fas fa-plus nav-icon"></i>
-                                        <p>{{ __('sidebar.add_employee') }}</p>
-                                    </a>
-                                </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.pages.employees') }}" class="nav-link @yield('active_link_employees', '')">
+                                    <i class="fas fa-tasks nav-icon"></i>
+                                    <p>{{ __('sidebar.all_employees') }}</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.employees.create') }}" class="nav-link @yield('active_link_add_employee', '')">
+                                    <i class="fas fa-plus nav-icon"></i>
+                                    <p>{{ __('sidebar.add_employee') }}</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 @endif
@@ -125,18 +140,18 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('dashboard.pages.categories') }}" class="nav-link @yield('active_link_categories', '')">
-                                        <i class="fas fa-tasks nav-icon"></i>
-                                        <p>{{ __('sidebar.all_categories') }}</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('dashboard.categories.create') }}" class="nav-link @yield('active_link_add_category', '')">
-                                        <i class="fas fa-plus nav-icon"></i>
-                                        <p>{{ __('sidebar.add_category') }}</p>
-                                    </a>
-                                </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.pages.categories') }}" class="nav-link @yield('active_link_categories', '')">
+                                    <i class="fas fa-tasks nav-icon"></i>
+                                    <p>{{ __('sidebar.all_categories') }}</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.categories.create') }}" class="nav-link @yield('active_link_add_category', '')">
+                                    <i class="fas fa-plus nav-icon"></i>
+                                    <p>{{ __('sidebar.add_category') }}</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 @endif

@@ -1,0 +1,47 @@
+<?php
+
+return [
+    'index' => [
+        'admins' => 'Admins',
+        'admin_table' => 'Admin Table',
+        'home' => 'Home',
+        'name' => 'Name',
+        'email' => 'Email',
+        'phone' => 'Phone',
+        'roles' => 'Roles',
+        'image' => 'Image',
+        'control' => 'Control',
+
+        'show_roles' => 'Show Roles',
+        'update' => 'Update',
+        'delete' => 'Delete',
+    ],
+    'create' => [
+        'admins' => 'Admins',
+        'home' => 'Home',
+        'create_an_admin' => 'Create an Admin',
+        'name' => 'Name',
+        'phone' => 'Phone',
+        'email' => 'Email',
+        'password' => 'Password',
+        'roles' => 'Roles',
+        'image' => 'Image',
+        'chose_file' => 'Chose File',
+        'upload' => 'Upload',
+        'create' => 'Create',
+    ],
+    'update' => [
+        'admins' => 'Admins',
+        'home' => 'Home',
+        'update_the_admin' => 'Edit',
+        'name' => 'Name',
+        'phone' => 'Phone',
+        'email' => 'Email',
+        'password' => 'Password',
+        'roles' => 'Roles',
+        'image' => 'Image',
+        'chose_file' => 'Chose File',
+        'upload' => 'Upload',
+        'update' => 'Update',
+    ],
+];

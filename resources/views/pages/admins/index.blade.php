@@ -1,6 +1,7 @@
 @extends('dash_layouts.app')
 
 @section('active_admins', 'active')
+@section('active_link_admin', 'active')
 @section('mode', 'dark')
 @section('layout_style', 'dark-mode layout-fixed layout-navbar-fixed layout-footer-fixed')
 
@@ -17,12 +18,17 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Admins</h1>
+                        <h1>{{ __('admins.index.admins') }}</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Admins</li>
+                            @if (App::currentLocale() == 'en')
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard.main') }}">{{ __('admins.index.home') }}</a></li>
+                                <li class="breadcrumb-item active">{{ __('admins.index.admins') }}</li>
+                            @else
+                                <li class="breadcrumb-item active">{{ __('admins.index.admins') }}</li>
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard.main') }}">{{ __('admins.index.home') }}</a></li>
+                            @endif
                         </ol>
                     </div>
                 </div>
@@ -36,8 +42,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title d-flex justify-content-between align-items-center w-100">Admin table <a href="{{ route('dashboard.pages.admins.create') }}"
-                                        class="btn btn-primary">Add Admin</a></h3>
+                                <h3 class="card-title d-flex justify-content-between align-items-center w-100">{{ __('admins.index.admin_table') }}</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -45,12 +50,12 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Name</th>
-                                            <th>E-mail</th>
-                                            <th>Phone</th>
-                                            <th>Roles</th>
-                                            <th>Image</th>
-                                            <th>Control</th>
+                                            <th>{{ __('admins.index.name') }}</th>
+                                            <th>{{ __('admins.index.email') }}</th>
+                                            <th>{{ __('admins.index.phone') }}</th>
+                                            <th>{{ __('admins.index.roles') }}</th>
+                                            <th>{{ __('admins.index.image') }}</th>
+                                            <th>{{ __('admins.index.control') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -62,7 +67,7 @@
                                                 <td>{{ $user->phone }}</td>
                                                 <td>
                                                     <div>
-                                                        <button type="button" class="btn btn-primary " data-toggle="dropdown" aria-expanded="false">Show roles</button>
+                                                        <button type="button" class="btn btn-primary " data-toggle="dropdown" aria-expanded="false">{{ __('admins.index.show_roles') }}</button>
 
                                                         <div class="dropdown-menu" role="menu" style="">
                                                             @foreach ($user->roles as $index => $role)
@@ -74,11 +79,11 @@
                                                 <td><img src="{{ $user->getFirstMediaUrl() ?: asset('images/default-user.jpg') }}" alt="image" width="50"></td>
                                                 <td>
                                                     <div class="btn-group-vertical w-100">
-                                                        <a href="{{ route('dashboard.pages.admins.update', $user->id) }}" class="btn btn-primary w-100">Update</a>
+                                                        <a href="{{ route('dashboard.pages.admins.update', $user->id) }}" class="btn btn-primary w-100">{{ __('admins.index.update') }}</a>
                                                         <form action="{{ route('dashboard.admins.delete', $user->id) }}" method="POST" class="w-100">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button class="btn btn-danger w-100">Delete</button>
+                                                            <button class="btn btn-danger w-100">{{ __('admins.index.delete') }}</button>
                                                         </form>
                                                     </div>
                                                 </td>
@@ -88,12 +93,12 @@
                                     <tfoot>
                                         <tr>
                                             <th>#</th>
-                                            <th>Name</th>
-                                            <th>E-mail</th>
-                                            <th>Phone</th>
-                                            <th>Roles</th>
-                                            <th>Image</th>
-                                            <th>Control</th>
+                                            <th>{{ __('admins.index.name') }}</th>
+                                            <th>{{ __('admins.index.email') }}</th>
+                                            <th>{{ __('admins.index.phone') }}</th>
+                                            <th>{{ __('admins.index.roles') }}</th>
+                                            <th>{{ __('admins.index.image') }}</th>
+                                            <th>{{ __('admins.index.control') }}</th>
                                         </tr>
                                     </tfoot>
                                 </table>

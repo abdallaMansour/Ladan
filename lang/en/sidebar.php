@@ -6,6 +6,7 @@ return [
 
     // Admins
     'admins' => 'Admins',
+    'add_admin' => 'Add Admin',
 
     // Roles
     'roles' => 'Roles',

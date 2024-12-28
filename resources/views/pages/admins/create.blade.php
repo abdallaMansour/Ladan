@@ -1,6 +1,7 @@
 @extends('dash_layouts.app')
 
 @section('active_admins', 'active')
+@section('active_link_add_admin', 'active')
 @section('mode', 'dark')
 @section('layout_style', 'dark-mode layout-fixed layout-navbar-fixed layout-footer-fixed')
 
@@ -13,12 +14,19 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Admins</h1>
+                        <h1>{{ __('admins.create.admins') }}</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Admins</li>
+                            @if (App::currentLocale() == 'en')
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard.main') }}">{{ __('admins.create.home') }}</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard.pages.admins') }}">{{ __('admins.create.admins') }}</a></li>
+                                <li class="breadcrumb-item active">{{ __('admins.create.create_an_admin') }}</li>
+                            @else
+                                <li class="breadcrumb-item active">{{ __('admins.create.create_an_admin') }}</li>
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard.pages.admins') }}">{{ __('admins.create.admins') }}</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard.main') }}">{{ __('admins.create.home') }}</a></li>
+                            @endif
                         </ol>
                     </div>
                 </div>
@@ -34,7 +42,7 @@
                         <!-- jquery validation -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Admin table</h3>
+                                <h3 class="card-title">{{ __('admins.create.create_an_admin') }}</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
@@ -42,24 +50,24 @@
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="name">Name</label>
-                                        <input type="text" name="name" class="form-control" id="name" placeholder="Name" value="{{ old('name') }}">
+                                        <label for="name">{{ __('admins.create.name') }}</label>
+                                        <input type="text" name="name" class="form-control" id="name" placeholder="{{ __('admins.create.name') }}" value="{{ old('name') }}">
                                         @error('name')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="phone">Phone</label>
-                                        <input type="text" name="phone" class="form-control" id="phone" placeholder="Phone" value="{{ old('phone') }}">
+                                        <label for="phone">{{ __('admins.create.phone') }}</label>
+                                        <input type="text" name="phone" class="form-control" id="phone" placeholder="{{ __('admins.create.phone') }}" value="{{ old('phone') }}">
                                         @error('phone')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="email">Email address</label>
-                                        <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" value="{{ old('email') }}">
+                                        <label for="email">{{ __('admins.create.email') }}</label>
+                                        <input type="email" name="email" class="form-control" id="email" placeholder="{{ __('admins.create.email') }}" value="{{ old('email') }}">
                                         @error('email')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -67,15 +75,15 @@
 
 
                                     <div class="form-group">
-                                        <label for="password">Password</label>
-                                        <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                                        <label for="password">{{ __('admins.create.password') }}</label>
+                                        <input type="password" name="password" class="form-control" id="password" placeholder="{{ __('admins.create.password') }}">
                                         @error('password')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Roles</label>
+                                        <label>{{ __('admins.create.roles') }}</label>
                                         <select name="roles[]"
                                             class="form-control select2bs4 select2-hidden-accessible"
                                             style="width: 100%;"
@@ -96,14 +104,14 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="exampleInputFile">Profile image</label>
+                                        <label for="exampleInputFile">{{ __('admins.create.image') }}</label>
                                         <div class="input-group">
                                             <div class="custom-file">
                                                 <input onchange="profileImage(this)" name="image" type="file" class="custom-file-input" id="exampleInputFile">
-                                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                                <label class="custom-file-label" for="exampleInputFile">{{ __('admins.create.chose_file') }}</label>
                                             </div>
                                             <div class="input-group-append">
-                                                <span class="input-group-text">Upload</span>
+                                                <span class="input-group-text">{{ __('admins.create.upload') }}</span>
                                             </div>
                                         </div>
                                         @error('image')
@@ -120,7 +128,7 @@
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">{{ __('admins.create.create') }}</button>
                                 </div>
                             </form>
                         </div>

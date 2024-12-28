@@ -47,11 +47,11 @@ class AdminController extends Controller
 
             $admin->save();
 
-            return to_route('dashboard.pages.admins')->with('success', 'Admin created successfully');
+            return to_route('dashboard.pages.admins')->with('success', __('admins.controller.create.success'));
         } catch (\Throwable $th) {
             throw new \Exception($th->getMessage(), 1);
 
-            return to_route('dashboard.pages.admins.index')->with('error', 'Failed to create admin');
+            return back()->with('error', __('admins.controller.create.failed'));
         }
     }
 
@@ -91,7 +91,7 @@ class AdminController extends Controller
         try {
             $admin = User::find($id);
             if (!$admin) {
-                return back()->with('error', 'Admin not found');
+                return back()->with('error', __('admins.controller.not_found'));
             }
             $admin->update($validate);
 
@@ -104,9 +104,9 @@ class AdminController extends Controller
 
             $admin->save();
 
-            return to_route('dashboard.pages.admins')->with('success', 'Admin updated successfully');
+            return to_route('dashboard.pages.admins')->with('success', __('admins.controller.update.success'));
         } catch (\Throwable $th) {
-            return back()->with('error', 'Failed to create admin');
+            return back()->with('error', __('admins.controller.update.success'));
         }
     }
 
@@ -117,10 +117,10 @@ class AdminController extends Controller
     {
         $admin = User::find($id);
         if (!$admin) {
-            return back()->with('error', 'Admin not found');
+            return back()->with('error', __('admins.controller.not_found'));
         }
         $admin->clearMediaCollection();
         $admin->delete();
-        return to_route('dashboard.pages.admins')->with('success', 'Admin deleted successfully');
+        return to_route('dashboard.pages.admins')->with('success', __('admins.controller.delete.success'));
     }
 }

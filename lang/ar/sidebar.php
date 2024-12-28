@@ -6,6 +6,7 @@ return [
 
     // Admins
     'admins' => 'المشرفين ',
+    'add_admin' => 'إضافة مشرف',
 
     // Roles
     'roles' => 'المناصب',
