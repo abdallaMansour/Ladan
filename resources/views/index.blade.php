@@ -13,12 +13,11 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Dashboard</h1>
+                        <h1 class="m-0">{{ __('dashboard.dashboard') }}</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Dashboard v1</li>
+                            <li class="breadcrumb-item"><a href="#">{{ __('dashboard.home') }}</a></li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -37,12 +36,12 @@
                             <div class="inner">
                                 <h3>{{ \App\Models\Message::count() }}</h3>
 
-                                <p>Count of Messages</p>
+                                <p>{{ __('dashboard.count_of_messages') }}</p>
                             </div>
                             <div class="icon">
                                 <i class="far fa-envelope"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{ route('dashboard.pages.messages') }}" class="small-box-footer">{{ __('dashboard.more_info') }} <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -52,12 +51,12 @@
                             <div class="inner">
                                 <h3>{{ \App\Models\Ticket::count() }}</h3>
 
-                                <p>Count of ticket</p>
+                                <p>{{ __('dashboard.count_of_tickets') }}</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-ticket-alt"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{ route('dashboard.pages.tickets') }}" class="small-box-footer">{{ __('dashboard.more_info') }} <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -67,12 +66,12 @@
                             <div class="inner">
                                 <h3>{{ \App\Models\User::where('type', 'user')->count() }}</h3>
 
-                                <p>User Registrations</p>
+                                <p>{{ __('dashboard.count_of_users') }}</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-person-add"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="#" class="small-box-footer">{{ __('dashboard.more_info') }} <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -82,12 +81,12 @@
                             <div class="inner">
                                 <h3>{{ \App\Models\User::where('type', 'admin')->count() }}</h3>
 
-                                <p>Count of Admins</p>
+                                <p>{{ __('dashboard.count_of_admins') }}</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-user-tie"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{ route('dashboard.pages.admins') }}" class="small-box-footer">{{ __('dashboard.more_info') }} <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
