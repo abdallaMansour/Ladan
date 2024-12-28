@@ -34,17 +34,6 @@
                     </li>
                 @endif
 
-                @if (auth()->user()->hasPermission(config('all_permissions.role')))
-                    <li class="nav-item">
-                        <a href="{{ route('dashboard.pages.roles') }}" class="nav-link @yield('active_roles', '')">
-                            <i class="nav-icon fas fa-user-edit"></i>
-                            <p>
-                                {{ __('sidebar.roles') }}
-                            </p>
-                        </a>
-                    </li>
-                @endif
-
                 @if (auth()->user()->hasPermission(config('all_permissions.contact_us')))
                     <li class="nav-item">
                         <a href="{{ route('dashboard.pages.messages') }}" class="nav-link @yield('active_messages', '')">
@@ -53,6 +42,32 @@
                                 {{ __('sidebar.message') }}
                             </p>
                         </a>
+                    </li>
+                @endif
+
+                @if (auth()->user()->hasPermission(config('all_permissions.role')))
+                    <li class="nav-item menu">
+                        <a href="#" class="nav-link @yield('active_roles', '')">
+                            <i class="nav-icon fas fa-user-edit"></i>
+                            <p>
+                                {{ __('sidebar.roles') }}
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.pages.roles') }}" class="nav-link @yield('active_link_role', '')">
+                                    <i class="fas fa-tasks nav-icon"></i>
+                                    <p>{{ __('sidebar.all_roles') }}</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.pages.roles.create') }}" class="nav-link @yield('active_link_add_role', '')">
+                                    <i class="fas fa-plus nav-icon"></i>
+                                    <p>{{ __('sidebar.add_role') }}</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 @endif
 

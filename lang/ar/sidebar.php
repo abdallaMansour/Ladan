@@ -9,7 +9,9 @@ return [
     'add_admin' => 'إضافة مشرف',
 
     // Roles
-    'roles' => 'المناصب',
+    'roles' => 'الصلاحيات',
+    'all_roles' => 'جميع الصلاحيات',
+    'add_role' => 'إضافة صلاحية',
 
     // Message
     'message' => 'الرسائل',

@@ -13,12 +13,20 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Admins</h1>
+                        <h1>{{ __('roles.update.roles') }}</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Admins</li>
+
+                            @if (App::currentLocale() == 'en')
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard.main') }}">{{ __('roles.update.home') }}</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard.pages.roles') }}">{{ __('roles.update.roles') }}</a></li>
+                                <li class="breadcrumb-item active">{{ __('roles.update.update') }}</li>
+                            @else
+                                <li class="breadcrumb-item active">{{ __('roles.update.update') }}</li>
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard.pages.roles') }}">{{ __('roles.update.roles') }}</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard.main') }}">{{ __('roles.update.home') }}</a></li>
+                            @endif
                         </ol>
                     </div>
                 </div>
@@ -34,7 +42,7 @@
                         <!-- jquery validation -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Admin table</h3>
+                                <h3 class="card-title">{{ __('roles.update.update_role') . ' ' . $role->display_name }}</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
@@ -42,31 +50,31 @@
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="name">Name</label>
-                                        <input type="text" name="name" class="form-control" id="name" placeholder="Name" value="{{ old('name') ?? $role->name }}">
+                                        <label for="name">{{ __('roles.update.name') }}</label>
+                                        <input type="text" name="name" class="form-control" id="name" placeholder="{{ __('roles.update.name') }}" value="{{ old('name') ?? $role->name }}">
                                         @error('name')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="display_name_ar">Display name (arabic)</label>
-                                        <input type="text" name="display_name_ar" class="form-control" id="display_name_ar" placeholder="Display name (arabic)" value="{{ old('display_name_ar') ?? $role->getTranslation('ar')->display_name }}">
+                                        <label for="display_name_ar">{{ __('roles.update.display_name_ar') }}</label>
+                                        <input type="text" name="display_name_ar" class="form-control" id="display_name_ar" placeholder="{{ __('roles.update.display_name_ar') }}" value="{{ old('display_name_ar') ?? $role->getTranslation('ar')->display_name }}">
                                         @error('display_name_ar')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="display_name_en">Display name (english)</label>
-                                        <input type="text" name="display_name_en" class="form-control" id="display_name_en" placeholder="Display name (enabic)" value="{{ old('display_name_en') ?? $role->getTranslation('en')->display_name }}">
+                                        <label for="display_name_en">{{ __('roles.update.display_name_en') }}</label>
+                                        <input type="text" name="display_name_en" class="form-control" id="display_name_en" placeholder="{{ __('roles.update.display_name_en') }}" value="{{ old('display_name_en') ?? $role->getTranslation('en')->display_name }}">
                                         @error('display_name_en')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Permission</label>
+                                        <label>{{ __('roles.update.permissions') }}</label>
                                         <select name="permissions[]"
                                             class="form-control select2bs4 select2-hidden-accessible"
                                             style="width: 100%;height: 200px"
@@ -89,7 +97,7 @@
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">{{ __('roles.update.submit') }}</button>
                                 </div>
                             </form>
                         </div>

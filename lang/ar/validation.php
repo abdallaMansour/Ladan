@@ -218,6 +218,9 @@ return [
         'description_ar'        => 'الوصف بالعربي',
         'description_en'        => 'الوصف بالإنجليزي',
         'roles'                 => 'الأدوار',
+        'display_name_ar'       => 'إسم العرض بالعربي',
+        'display_name_en'       => 'إسم العرض بالإنجليزي',
+        'permissions'           => 'الأذونات',
     ],
 
 ];

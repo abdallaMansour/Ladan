@@ -1,6 +1,7 @@
 @extends('dash_layouts.app')
 
 @section('active_roles', 'active')
+@section('active_link_role', 'active')
 @section('mode', 'dark')
 @section('layout_style', 'dark-mode layout-fixed layout-navbar-fixed layout-footer-fixed')
 
@@ -13,12 +14,17 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Roles</h1>
+                        <h1>{{ __('roles.index.roles') }}</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Roles</li>
+                            @if (App::currentLocale() == 'en')
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard.main') }}">{{ __('roles.index.home') }}</a></li>
+                                <li class="breadcrumb-item">{{ __('roles.index.roles') }}</li>
+                            @else
+                                <li class="breadcrumb-item">{{ __('roles.index.roles') }}</li>
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard.main') }}">{{ __('roles.index.home') }}</a></li>
+                            @endif
                         </ol>
                     </div>
                 </div>
@@ -32,8 +38,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title d-flex justify-content-between align-items-center w-100">Role table <a href="{{ route('dashboard.pages.roles.create') }}"
-                                        class="btn btn-primary">Add Role</a></h3>
+                                <h3 class="card-title d-flex justify-content-between align-items-center w-100">{{ __('roles.index.role_table') }}</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -41,19 +46,19 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Name</th>
-                                            <th>Permissions</th>
-                                            <th>Control</th>
+                                            <th>{{ __('roles.index.name') }}</th>
+                                            <th>{{ __('roles.index.permissions') }}</th>
+                                            <th>{{ __('roles.index.control') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($roles as $role)
                                             <tr>
                                                 <td>{{ $role->id }}</td>
-                                                <td>{{ $role->name }}</td>
+                                                <td>{{ $role->display_name }}</td>
                                                 <td>
                                                     <div>
-                                                        <button type="button" class="btn btn-primary " data-toggle="dropdown" aria-expanded="false">Show permissions</button>
+                                                        <button type="button" class="btn btn-primary " data-toggle="dropdown" aria-expanded="false">{{ __('roles.index.show_permissions') }}</button>
 
                                                         <div class="dropdown-menu" role="menu" style="">
                                                             @foreach ($role->permissions as $permission)
@@ -64,11 +69,11 @@
                                                 </td>
                                                 <td>
                                                     <div class="btn-group-vertical w-100">
-                                                        <a href="{{ route('dashboard.pages.roles.update', $role->id) }}" class="btn btn-primary w-100">Update</a>
+                                                        <a href="{{ route('dashboard.pages.roles.update', $role->id) }}" class="btn btn-primary w-100">{{ __('roles.index.update') }}</a>
                                                         <form action="{{ route('dashboard.roles.delete', $role->id) }}" method="POST" class="w-100">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button class="btn btn-danger w-100">Delete</button>
+                                                            <button class="btn btn-danger w-100">{{ __('roles.index.delete') }}</button>
                                                         </form>
                                                     </div>
                                                 </td>
@@ -78,9 +83,9 @@
                                     <tfoot>
                                         <tr>
                                             <th>#</th>
-                                            <th>Name</th>
-                                            <th>Permissions</th>
-                                            <th>Control</th>
+                                            <th>{{ __('roles.index.name') }}</th>
+                                            <th>{{ __('roles.index.permissions') }}</th>
+                                            <th>{{ __('roles.index.control') }}</th>
                                         </tr>
                                     </tfoot>
                                 </table>

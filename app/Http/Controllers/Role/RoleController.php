@@ -26,7 +26,7 @@ class RoleController extends Controller
             'name' => 'required|string|unique:roles',
             'permissions' => 'required|array',
             'permissions.*' => 'required|string|exists:permissions,id',
-            'display_name_ar' => 'nullable|string|unique:role_translations,display_name',
+            'n' => 'nullable|string|unique:role_translations,display_name',
             'display_name_en' => 'nullable|string|unique:role_translations,display_name',
         ]);
         try {
@@ -48,10 +48,10 @@ class RoleController extends Controller
             }
 
             DB::commit();
-            return to_route('dashboard.pages.roles')->with('success', 'Role created successfully');
+            return to_route('dashboard.pages.roles')->with('success', __('roles.controller.create.success'));
         } catch (\Throwable $th) {
             DB::rollBack();
-            return back()->with('success', $th->getMessage());
+            return back()->with('error', __('roles.controller.create.failed'));
         }
     }
 
@@ -74,7 +74,7 @@ class RoleController extends Controller
             $role = Role::find($roleId);
 
             if (!$role) {
-                return back()->with('success', 'Role not found');
+                return back()->with('success', __('roles.controller.not_found'));
             }
 
             $role->name = $request->name;
@@ -95,10 +95,10 @@ class RoleController extends Controller
             }
 
             DB::commit();
-            return to_route('dashboard.pages.roles')->with('success', 'Role updated successfully');
+            return to_route('dashboard.pages.roles')->with('success', __('roles.controller.update.success'));
         } catch (\Throwable $th) {
             DB::rollBack();
-            return back()->with('success', $th->getMessage());
+            return back()->with('success', __('roles.controller.update.failed'));
         }
     }
 
@@ -109,16 +109,16 @@ class RoleController extends Controller
             $role = Role::find($roleId);
 
             if (!$role) {
-                return  back()->with('success', 'Role not found');
+                return  back()->with('success', __('roles.controller.not_found'));
             }
 
             $role->deleteTranslations();
             $role->delete();
             DB::commit();
-            return back()->with('success', 'Role deleted successfully');
+            return back()->with('success', __('roles.controller.delete.success'));
         } catch (\Throwable $th) {
             DB::rollBack();
-            return back()->with('success', $th->getMessage());
+            return back()->with('success', __('roles.controller.delete.failed'));
         }
     }
 }

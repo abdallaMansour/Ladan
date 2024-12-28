@@ -10,6 +10,8 @@ return [
 
     // Roles
     'roles' => 'Roles',
+    'all_roles' => 'All Roles',
+    'add_role' => 'Add Role',
 
     // Message
     'message' => 'Message',

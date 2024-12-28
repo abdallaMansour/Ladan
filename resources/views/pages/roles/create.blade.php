@@ -1,6 +1,7 @@
 @extends('dash_layouts.app')
 
 @section('active_roles', 'active')
+@section('active_link_add_role', 'active')
 @section('mode', 'dark')
 @section('layout_style', 'dark-mode layout-fixed layout-navbar-fixed layout-footer-fixed')
 
@@ -13,12 +14,19 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Roles</h1>
+                        <h1>{{ __('roles.create.roles') }}</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Roles</li>
+                            @if (App::currentLocale() == 'en')
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard.main') }}">{{ __('roles.create.home') }}</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard.pages.roles') }}">{{ __('roles.create.roles') }}</a></li>
+                                <li class="breadcrumb-item active">{{ __('roles.create.create') }}</li>
+                            @else
+                                <li class="breadcrumb-item active">{{ __('roles.create.create') }}</li>
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard.pages.roles') }}">{{ __('roles.create.roles') }}</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard.main') }}">{{ __('roles.create.home') }}</a></li>
+                            @endif
                         </ol>
                     </div>
                 </div>
@@ -34,7 +42,7 @@
                         <!-- jquery validation -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Role table</h3>
+                                <h3 class="card-title">{{ __('roles.create.create_role') }}</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
@@ -42,31 +50,31 @@
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="name">Name</label>
-                                        <input type="text" name="name" class="form-control" id="name" placeholder="Name" value="{{ old('name') }}">
+                                        <label for="name">{{ __('roles.create.name') }}</label>
+                                        <input type="text" name="name" class="form-control" id="name" placeholder="{{ __('roles.create.name') }}" value="{{ old('name') }}">
                                         @error('name')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="display_name_ar">Display name (arabic)</label>
-                                        <input type="text" name="display_name_ar" class="form-control" id="display_name_ar" placeholder="Display name (arabic)" value="{{ old('display_name_ar') }}">
+                                        <label for="display_name_ar">{{ __('roles.create.display_name_ar') }}</label>
+                                        <input type="text" name="display_name_ar" class="form-control" id="display_name_ar" placeholder="{{ __('roles.create.display_name_ar') }}" value="{{ old('display_name_ar') }}">
                                         @error('display_name_ar')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="display_name_en">Display name (english)</label>
-                                        <input type="text" name="display_name_en" class="form-control" id="display_name_en" placeholder="Display name (enabic)" value="{{ old('display_name_en') }}">
+                                        <label for="display_name_en">{{ __('roles.create.display_name_en') }}</label>
+                                        <input type="text" name="display_name_en" class="form-control" id="display_name_en" placeholder="{{ __('roles.create.display_name_en') }}" value="{{ old('display_name_en') }}">
                                         @error('display_name_en')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Permission</label>
+                                        <label>{{ __('roles.create.permissions') }}</label>
                                         <select name="permissions[]"
                                             class="form-control select2bs4 select2-hidden-accessible"
                                             style="width: 100%;"
@@ -89,7 +97,7 @@
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">{{ __('roles.create.submit') }}</button>
                                 </div>
                             </form>
                         </div>
