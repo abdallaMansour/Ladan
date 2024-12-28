@@ -16,14 +16,14 @@ class TicketController extends Controller
      */
     public function store_ticket(Request $request)
     {
+        $request->validate([
+            'message' => 'required',
+            'category_id' => 'required|exists:categories,id',
+            'priority' => 'required|in:urgent,medium,low',
+            'file' => 'nullable|file',
+        ]);
         try {
             DB::beginTransaction();
-            $request->validate([
-                'message' => 'required',
-                'category_id' => 'required|exists:categories,id',
-                'priority' => 'required|in:urgent,medium,low',
-                'file' => 'nullable|file',
-            ]);
 
             $ticket = Ticket::create([
                 'user_id' => auth()->id(),
@@ -37,21 +37,25 @@ class TicketController extends Controller
             }
 
             DB::commit();
-            return back()->with('success', 'Ticket message sent successfully');
+            return back()->with('success', __('tickets.store.success'));
         } catch (\Throwable $th) {
             DB::rollBack();
-            return back()->with('error', $th->getMessage());
+            return back()->with('error', __('tickets.store.failed'));
         }
     }
 
-    public function destroy($id)
+    public function change_status($id, Request $request)
     {
+        $request->validate(['status' => 'required|in:open,under_review,resolved,closed']);
+
         $ticket = Ticket::find($id);
 
         if (!$ticket) {
-            return back()->with('error', 'Ticket not found');
+            return back()->with('error', __('tickets.change_status.not_found'));
         }
-        $ticket->delete();
-        return back()->with('success', 'Ticket deleted successfully.');
+
+        $ticket->status = $request->status;
+        $ticket->save();
+        return back()->with('success', __('tickets.change_status.success'));
     }
 }

@@ -29,7 +29,7 @@
                         <!-- general form elements -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Profile update</h3>
+                                <h3 class="card-title">{{ __('profile.profile_update') }}</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
@@ -37,35 +37,35 @@
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="name">Name</label>
-                                        <input value="{{ old('name') ?? auth()->user()->name }}" type="name" name="name" class="form-control" id="name" placeholder="Enter name">
+                                        <label for="name">{{ __('profile.name') }}</label>
+                                        <input value="{{ old('name') ?? auth()->user()->name }}" type="name" name="name" class="form-control" id="name" placeholder="{{ __('profile.name') }}">
                                         @error('name')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="email">Email address</label>
-                                        <input value="{{ old('email') ?? auth()->user()->email }}" type="email" name="email" class="form-control" id="email" placeholder="Enter email">
+                                        <label for="email">{{ __('profile.email') }}</label>
+                                        <input value="{{ old('email') ?? auth()->user()->email }}" type="email" name="email" class="form-control" id="email" placeholder="{{ __('profile.email') }}">
                                         @error('email')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="phone">Phone Number</label>
-                                        <input value="{{ old('phone') ?? auth()->user()->phone }}" type="phone" name="phone" class="form-control" id="phone" placeholder="Enter phone">
+                                        <label for="phone">{{ __('profile.phone') }}</label>
+                                        <input value="{{ old('phone') ?? auth()->user()->phone }}" type="phone" name="phone" class="form-control" id="phone" placeholder="{{ __('profile.phone') }}">
                                         @error('phone')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputFile">Profile image</label>
+                                        <label for="exampleInputFile">{{ __('profile.image') }}</label>
                                         <div class="input-group">
                                             <div class="custom-file">
                                                 <input onchange="profileImage(this)" name="image" type="file" class="custom-file-input" id="exampleInputFile">
-                                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                                <label class="custom-file-label" for="exampleInputFile">{{ __('profile.chose_image') }}</label>
                                             </div>
                                             <div class="input-group-append">
-                                                <span class="input-group-text">Upload</span>
+                                                <span class="input-group-text">{{ __('profile.upload') }}</span>
                                             </div>
                                         </div>
                                         @error('image')
@@ -82,7 +82,7 @@
                                 <!-- /.card-body -->
 
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">{{ __('profile.submit') }}</button>
                                 </div>
                             </form>
                         </div>
@@ -94,23 +94,23 @@
                         <!-- Form Element sizes -->
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Change Password</h3>
+                                <h3 class="card-title">{{ __('profile.change_password') }}</h3>
                             </div>
                             <form action="{{ route('profile.password.update') }}" method="POST" class="card-body">
                                 @csrf
-                                <input name="old_password" class="form-control" type="password" placeholder="Old Password">
+                                <input name="old_password" class="form-control" type="password" placeholder="{{ __('profile.old_password') }}">
                                 @error('old_password')
                                     <span class="text-danger mb-1 d-block">{{ $message }}</span>
                                 @enderror
                                 <br>
-                                <input name="password" class="form-control" type="password" placeholder="New Password">
+                                <input name="password" class="form-control" type="password" placeholder="{{ __('profile.new_password') }}">
                                 @error('password')
                                     <span class="text-danger mb-1 d-block">{{ $message }}</span>
                                 @enderror
                                 <br>
-                                <input name="password_confirmation" class="form-control" type="password" placeholder="Password Confirmation">
+                                <input name="password_confirmation" class="form-control" type="password" placeholder="{{ __('profile.password_confirmation') }}">
                                 <br>
-                                <button class="btn btn-primary" type="submit">Update</button>
+                                <button class="btn btn-primary" type="submit">{{ __('profile.update') }}</button>
                             </form>
                             <!-- /.card-body -->
                         </div>
@@ -123,11 +123,6 @@
             </div><!-- /.container-fluid -->
         </section>
         <!-- /.content -->
-
-
-        <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top">
-            <i class="fas fa-chevron-up"></i>
-        </a>
     </div>
     <!-- /.content-wrapper -->
 @endsection

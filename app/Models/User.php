@@ -24,6 +24,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Laratru
         'name',
         'email',
         'phone',
+        'type',
         'password',
     ];
 
@@ -48,5 +49,20 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Laratru
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function getFirstMediaUrl(string $collectionName = 'default', string $conversionName = ''): string
+    {
+        $media = $this->getFirstMedia($collectionName);
+
+        if (! $media) {
+            return asset('images/default-user.jpg');
+        }
+
+        if ($conversionName !== '' && ! $media->hasGeneratedConversion($conversionName)) {
+            return $media->getUrl();
+        }
+
+        return $media->getUrl($conversionName);
     }
 }

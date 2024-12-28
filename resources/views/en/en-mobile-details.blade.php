@@ -37,7 +37,7 @@
             <p class="text-dark2 d-flex gap-2 align-items-start fs-5 wow fadeInUp" data-wow-delay=".25s">
                 <i class="fa-regular fa-circle-check mt-2 text-main fs-5"></i>
                 <span>
-                    At Ledn Technology, we provide you with mobile app development service characterized by high
+                    At Loden Technology, we provide you with mobile app development service characterized by high
                     professionalism and superior quality.
                 </span>
             </p>
@@ -74,7 +74,7 @@
             <p class="text-dark2 d-flex gap-2 align-items-start fs-5 wow fadeInUp" data-wow-delay=".5s">
                 <i class="fa-regular fa-circle-check mt-2 text-main fs-5"></i>
                 <span>
-                    Choosing mobile app development with Ledn Technology means that your application will always be
+                    Choosing mobile app development with Loden Technology means that your application will always be
                     updated and refreshed to keep pace with technological advancements and user needs.
                 </span>
             </p>
@@ -88,7 +88,7 @@
             <p class="text-dark2 d-flex gap-2 align-items-start fs-5 wow fadeInUp" data-wow-delay=".6s">
                 <i class="fa-regular fa-circle-check mt-2 text-main fs-5"></i>
                 <span>
-                    Now, order mobile app development service from Ledn Arabia, and start an endless journey of success
+                    Now, order mobile app development service from Loden Arabia, and start an endless journey of success
                     with us.
                 </span>
             </p>

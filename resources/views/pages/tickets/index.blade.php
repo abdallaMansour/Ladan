@@ -14,12 +14,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Admins</h1>
+                        <h1>{{ __('tickets.tickets') }}</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Admins</li>
+                            <li class="breadcrumb-item"><a href="#">{{ __('tickets.home') }}</a></li>
+                            <li class="breadcrumb-item active">{{ __('tickets.tickets') }}</li>
                         </ol>
                     </div>
                 </div>
@@ -33,29 +33,29 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title d-flex justify-content-between align-items-center w-100">Count of tickets : {{ $tickets->count() }}</h3>
+                                <h3 class="card-title d-flex justify-content-between align-items-center w-100">{{ __('tickets.index.count_of_tickets') }} : {{ $tickets->count() }}</h3>
                             </div>
                             <!-- /.card-header -->
-                            <div class="card-body">
+                            <div class="card-body overflow-auto">
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Status</th>
-                                            <th>Priority</th>
-                                            <th>Category</th>
+                                            <th>{{ __('tickets.index.status') }}</th>
+                                            <th>{{ __('tickets.index.priority') }}</th>
+                                            <th>{{ __('tickets.index.category') }}</th>
                                             @if (auth()->user()->type == 'user')
-                                                <th>Message</th>
-                                                <th>File</th>
-                                                <th>Date</th>
+                                                <th>{{ __('tickets.index.message') }}</th>
+                                                <th>{{ __('tickets.index.file') }}</th>
+                                                <th>{{ __('tickets.index.date') }}</th>
                                             @else
-                                                <th>Name</th>
-                                                <th>E-mail</th>
-                                                <th>Phone</th>
-                                                <th>Message</th>
-                                                <th>File</th>
-                                                <th>Date</th>
-                                                <th>Control</th>
+                                                <th>{{ __('tickets.index.name') }}</th>
+                                                <th>{{ __('tickets.index.email') }}</th>
+                                                <th>{{ __('tickets.index.phone') }}</th>
+                                                <th>{{ __('tickets.index.message') }}</th>
+                                                <th>{{ __('tickets.index.file') }}</th>
+                                                <th>{{ __('tickets.index.date') }}</th>
+                                                <th>{{ __('tickets.index.control') }}</th>
                                             @endif
                                         </tr>
                                     </thead>
@@ -63,17 +63,17 @@
                                         @foreach ($tickets as $ticket)
                                             <tr>
                                                 <td>{{ $ticket->id }}</td>
-                                                <td>{{ $ticket->status }}</td>
-                                                <td>{{ $ticket->priority }}</td>
+                                                <td>{{ __('tickets.index.status_' . $ticket->status) }}</td>
+                                                <td>{{ __('tickets.index.priority_' . $ticket->priority) }}</td>
                                                 <td>{{ $ticket->category?->name }}</td>
                                                 @if (auth()->user()->type == 'user')
-                                                    <td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width:100px">{{ $ticket->message }}</td>
+                                                    <td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width:200px">{{ $ticket->message }}</td>
                                                     <td>
                                                         <div>
                                                             @if ($ticket->getFirstMediaUrl())
-                                                                <a href="{{ $ticket->getFirstMediaUrl() }}" download>Download file</a>
+                                                                <a href="{{ $ticket->getFirstMediaUrl() }}" download>{{ __('tickets.index.download_file') }}</a>
                                                             @else
-                                                                <a class="text-secondary">No file uploaded</a>
+                                                                <a class="text-secondary">{{ __('tickets.index.no_file_uploaded') }}</a>
                                                             @endif
                                                         </div>
                                                     </td>
@@ -82,27 +82,25 @@
                                                     <td>{{ $ticket->user->name }}</td>
                                                     <td>{{ $ticket->user->email }}</td>
                                                     <td>{{ $ticket->user->phone }}</td>
-                                                    <td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width:100px">{{ $ticket->message }}</td>
+                                                    <td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width:200px">{{ $ticket->message }}</td>
                                                     <td>
                                                         <div>
                                                             @if ($ticket->getFirstMediaUrl())
-                                                                <a href="{{ $ticket->getFirstMediaUrl() }}" download>Download file</a>
+                                                                <a href="{{ $ticket->getFirstMediaUrl() }}" download>{{ __('tickets.index.download_file') }}</a>
                                                             @else
-                                                                <a class="text-secondary">No file uploaded</a>
+                                                                <a class="text-secondary">{{ __('tickets.index.no_file_uploaded') }}</a>
                                                             @endif
                                                         </div>
                                                     </td>
                                                     <td>{{ $ticket->created_at?->diffForHumans() ?: 'No date' }}</td>
                                                     <td>
-                                                        <div class="btn-group w-100">
+                                                        <div class="d-flex flex-column w-100">
                                                             <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#show-{{ $ticket->id }}">
-                                                                Show
+                                                                {{ __('tickets.index.show') }}
                                                             </button>
-                                                            <form action="{{ route('dashboard.tickets.delete', $ticket->id) }}" method="POST" class="w-100">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button class="btn btn-sm btn-danger w-100">Delete</button>
-                                                            </form>
+                                                            <button type="button" class="btn btn-sm btn-success text-nowrap" data-toggle="modal" data-target="#change_status-{{ $ticket->id }}">
+                                                                {{ __('tickets.index.change_status') }}
+                                                            </button>
                                                         </div>
                                                     </td>
                                                 @endif
@@ -115,29 +113,77 @@
 
 
 
+                                            @php
+                                                $is_ar = App::currentLocale() === 'ar' ? true : false;
+                                            @endphp
                                             <div class="modal fade" id="show-{{ $ticket->id }}">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
+                                                        <div class="modal-header align-items-center {{ $is_ar ? 'd-flex flex-row-reverse' : '' }}">
                                                             <h4 class="modal-title">{{ $ticket->user->name }}</h4>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <button type="button" class="close m-0" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body {{ $is_ar ? 'd-flex flex-column align-items-end' : '' }}">
+                                                            @if ($ticket->user->phone)
+                                                                <p>{{ __('tickets.index.phone') }} : <span class="text-secondary">{{ $ticket->user->phone }}</span></p>
+                                                            @endif
+                                                            <p>{{ __('tickets.index.status') }} : <span class="text-secondary">{{ __('tickets.index.status_' . $ticket->status) }}</span></p>
+                                                            <p>{{ __('tickets.index.priority') }} : <span class="text-secondary">{{ __('tickets.index.priority_' . $ticket->priority) }}</span></p>
+                                                            <p>{{ __('tickets.index.category') }} : <span class="text-secondary">{{ $ticket->category?->name }}</span></p>
+                                                            <p class="{{ $is_ar ? 'd-flex flex-row-reverse' : '' }}">{{ __('tickets.index.email') }} <span class="text-secondary">
+                                                                    {{ $ticket->user->email }}</span></p>
+                                                            <p style="margin-bottom: 5px">{{ __('tickets.index.message') }} :</p>
+                                                            <span class="text-sm">{{ $ticket->message }}</span>
+                                                            <p class="text-secondary text-sm mt-3">{{ __('tickets.index.date') }}: {{ $ticket->created_at?->diffForHumans() ?: 'No date' }}</p>
+                                                        </div>
+                                                        <div class="modal-footer justify-content-between">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('tickets.index.close') }}</button>
+                                                            @if ($ticket->getFirstMediaUrl())
+                                                                <a href="{{ $ticket->getFirstMediaUrl() }}" class="btn btn-primary" download>{{ __('tickets.index.download_file') }}</a>
+                                                            @else
+                                                                <span class="text-secondary">{{ __('tickets.index.no_file_uploaded') }}</span>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.modal-content -->
+                                                </div>
+                                                <!-- /.modal-dialog -->
+                                            </div>
+                                            <div class="modal fade" id="change_status-{{ $ticket->id }}">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header align-items-center {{ $is_ar ? 'd-flex flex-row-reverse' : '' }}">
+                                                            <h4 class="modal-title">{{ $ticket->user->name }}</h4>
+                                                            <button type="button" class="close m-0" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <p>Phone : <span class="text-secondary">{{ $ticket->user->phone }}</span></p>
-                                                            <p>E-mail : <span class="text-secondary">{{ $ticket->user->email }}</span></p>
-                                                            <p style="margin-bottom: 5px">Message :</p>
-                                                            <span class="text-sm">{{ $ticket->message }}</span>
-                                                            <p class="text-secondary">date: {{ $ticket->created_at?->diffForHumans() ?: 'No date' }}</p>
-                                                        </div>
-                                                        <div class="modal-footer justify-content-between">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                            @if ($ticket->getFirstMediaUrl())
-                                                                <a href="{{ $ticket->getFirstMediaUrl() }}" class="btn btn-primary" download>Download file</a>
-                                                            @else
-                                                                <span class="text-secondary">No file uploaded</span>
-                                                            @endif
+                                                            <form action="{{ route('dashboard.tickets.change_status', $ticket->id) }}" method="POST" class="w-100">
+                                                                @csrf
+                                                                @method('PATCH')
+
+
+
+                                                                <div class="form-group">
+                                                                    <label for="exampleSelectBorder">{{ __('tickets.create.priority') }}</label>
+                                                                    <select required class="custom-select form-control-border" name="status" id="exampleSelectBorder">
+                                                                        <option value="open" @selected(old('priority') == 'open')>{{ __('tickets.create.status_open') }}</option>
+                                                                        <option value="under_review" @selected(old('priority') == 'under_review')>{{ __('tickets.create.status_under_review') }}</option>
+                                                                        <option value="resolved" @selected(old('priority') == 'resolved')>{{ __('tickets.create.status_resolved') }}</option>
+                                                                        <option value="closed" @selected(old('priority') == 'closed')>{{ __('tickets.create.status_closed') }}</option>
+                                                                    </select>
+                                                                    @error('priority')
+                                                                        <span class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="d-flex justify-content-between">
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('tickets.index.close') }}</button>
+                                                                    <button class="btn btn-success">{{ __('tickets.index.change_status') }}</button>
+                                                                </div>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                     <!-- /.modal-content -->
@@ -149,21 +195,21 @@
                                     <tfoot>
                                         <tr>
                                             <th>#</th>
-                                            <th>Status</th>
-                                            <th>Priority</th>
-                                            <th>Category</th>
+                                            <th>{{ __('tickets.index.status') }}</th>
+                                            <th>{{ __('tickets.index.priority') }}</th>
+                                            <th>{{ __('tickets.index.category') }}</th>
                                             @if (auth()->user()->type == 'user')
-                                                <th>message</th>
-                                                <th>File</th>
-                                                <th>Date</th>
+                                                <th>{{ __('tickets.index.message') }}</th>
+                                                <th>{{ __('tickets.index.file') }}</th>
+                                                <th>{{ __('tickets.index.date') }}</th>
                                             @else
-                                                <th>Name</th>
-                                                <th>E-mail</th>
-                                                <th>Phone</th>
-                                                <th>message</th>
-                                                <th>File</th>
-                                                <th>Date</th>
-                                                <th>Control</th>
+                                                <th>{{ __('tickets.index.name') }}</th>
+                                                <th>{{ __('tickets.index.email') }}</th>
+                                                <th>{{ __('tickets.index.phone') }}</th>
+                                                <th>{{ __('tickets.index.message') }}</th>
+                                                <th>{{ __('tickets.index.file') }}</th>
+                                                <th>{{ __('tickets.index.date') }}</th>
+                                                <th>{{ __('tickets.index.control') }}</th>
                                             @endif
                                         </tr>
                                     </tfoot>
@@ -179,11 +225,6 @@
             <!-- /.container-fluid -->
         </section>
         <!-- /.content -->
-
-
-        <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top">
-            <i class="fas fa-chevron-up"></i>
-        </a>
     </div>
     <!-- /.content-wrapper -->
 @endsection

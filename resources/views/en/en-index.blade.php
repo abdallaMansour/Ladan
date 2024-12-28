@@ -8,7 +8,7 @@
         @include('en.layout.header')
         <!-- header text  -->
         <div class="header-text text-center">
-            <h1 class="text-light text-center mb-4  wow fadeIn" data-wow-delay=".2s">Ledn Arabia for Information
+            <h1 class="text-light text-center mb-4  wow fadeIn" data-wow-delay=".2s">Loden Arabia for Information
                 Technology</h1>
             <p class="text-light text-center fs-2 h2 mb-lg-5 mb-3 wow fadeIn" data-wow-delay=".3s">
                 A leading company in the field of providing

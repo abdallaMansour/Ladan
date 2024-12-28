@@ -1,6 +1,7 @@
 @extends('dash_layouts.app')
 
-@section('active_roles', 'active')
+@section('active_nav_employee', 'active')
+@section('active_link_add_employee', 'active')
 @section('mode', 'dark')
 @section('layout_style', 'dark-mode layout-fixed layout-navbar-fixed layout-footer-fixed')
 
@@ -13,12 +14,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Roles</h1>
+                        <h1>Employees</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Roles</li>
+                            <li class="breadcrumb-item active">Employees</li>
                         </ol>
                     </div>
                 </div>
@@ -34,57 +35,74 @@
                         <!-- jquery validation -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Role table</h3>
+                                <h3 class="card-title">Employee Update</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form id="quickForm" action="{{ route('dashboard.roles.store') }}" method="POST" enctype="multipart/form-data">
+                            <form id="quickForm" action="{{ route('dashboard.employees.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
+
                                     <div class="form-group">
                                         <label for="name">Name</label>
-                                        <input type="text" name="name" class="form-control" id="name" placeholder="Name" value="{{ old('name') }}">
+                                        <input name="name" class="form-control" id="name" placeholder="Name" value="{{ old('name') }}" />
                                         @error('name')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="display_name_ar">Display name (arabic)</label>
-                                        <input type="text" name="display_name_ar" class="form-control" id="display_name_ar" placeholder="Display name (arabic)" value="{{ old('display_name_ar') }}">
-                                        @error('display_name_ar')
+                                        <label for="email">E-mail</label>
+                                        <input type="email" name="email" class="form-control" id="email" placeholder="E-mail" value="{{ old('email') }}" />
+                                        @error('email')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="display_name_en">Display name (english)</label>
-                                        <input type="text" name="display_name_en" class="form-control" id="display_name_en" placeholder="Display name (enabic)" value="{{ old('display_name_en') }}">
-                                        @error('display_name_en')
+                                        <label for="phone">Phone</label>
+                                        <input name="phone" class="form-control" id="phone" placeholder="Phone" value="{{ old('phone') }}" />
+                                        @error('phone')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Permission</label>
-                                        <select name="permissions[]"
-                                            class="form-control select2bs4 select2-hidden-accessible"
-                                            style="width: 100%;"
-                                            multiple
-                                            data-select2-id="permissions-select"
-                                            tabindex="-1"
-                                            aria-hidden="true">
-                                            @foreach ($permissions as $permission)
-                                                <option value="{{ $permission->id }}"
-                                                    @if (isset($admin) && $admin->permissions->contains($permission->id)) selected @endif>
-                                                    {{ $permission->name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        @error('permissions')
+                                        <label for="password">Password</label>
+                                        <input type="password" name="password" class="form-control" id="password" placeholder="Password" />
+                                        @error('password')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
+
+                                    <div class="form-group">
+                                        <label for="password_confirmation">Confirm Password</label>
+                                        <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Confirm Password" />
+                                        @error('password_confirmation')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="image">User image</label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input onchange="changeImage(this)" name="image" type="file" class="custom-file-input" id="image">
+                                                <label class="custom-file-label" for="image">Choose image</label>
+                                            </div>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">Upload</span>
+                                            </div>
+                                        </div>
+                                        @error('image')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                        <img id="user-img"
+                                            style="max-width: 200px;max-height:200px"
+                                            class="mt-3">
+                                    </div>
+
 
                                 </div>
                                 <!-- /.card-body -->
@@ -119,22 +137,26 @@
 
     <!-- Page specific script -->
     <script>
+        function changeImage(input) {
+            if (input.files.length > 0) {
+                let img = document.getElementById('user-img');
+                let src = URL.createObjectURL(input.files[0]);
+                img.src = src;
+            }
+        }
+
+        
         $(function() {
             $('#quickForm').validate({
                 rules: {
-                    name: {
+                    message: {
                         required: true
-                    },
-                    permissions: {
-                        required: true
-                    },
+                    }
                 },
                 messages: {
-                    email: {
-                        required: "Please enter a email address",
-                        email: "Please enter a valid email address"
+                    message: {
+                        required: "Please enter a message",
                     },
-                    terms: "Please accept our terms"
                 },
                 errorElement: 'span',
                 errorPlacement: function(error, element) {

@@ -13,7 +13,7 @@
             <h1 class="text-light text-center mb-4 wow fadeIn" data-wow-delay=".2s" style="margin-top: 5vh;">Who We Are
             </h1>
             <p class="text-light text-center fs-4 h2 mb-lg-5 mb-3 wow fadeIn" data-wow-delay=".3s">
-                Discover all the services offered by Ledn Arabia to ensure your digital success
+                Discover all the services offered by Loden Arabia to ensure your digital success
             </p>
         </div>
 
@@ -32,7 +32,7 @@
                     data-wow-delay=".3s" alt="">
                 <div class="about-text col-12 col-lg-6">
                     <p class="text-dark2 fs-5 wow fadeInUp" data-wow-delay=".3s">
-                        At Ledn Arabia for Information Technology, we strive for innovation and advancement in
+                        At Loden Arabia for Information Technology, we strive for innovation and advancement in
                         integrated technological solutions. We aim to lead in the field of information technology with
                         passion and dedication, committed to an inspiring vision that propels us towards excellence.
                     </p>

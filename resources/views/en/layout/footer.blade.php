@@ -5,7 +5,7 @@
 <!-- start footer  -->
 <footer class="bg-dark pt-5">
     <div class="container">
-        <h2 class="text-white text-center wow fadeInDown" data-wow-delay=".2s"><span class="text-main">Ledn </span>
+        <h2 class="text-white text-center wow fadeInDown" data-wow-delay=".2s"><span class="text-main">Loden </span>
             Arabia for Information Technology</h2>
         <p class="text-white fs-5 text-center my-3 wow fadeInDown" data-wow-delay=".3s">
             Your trusted partner in the world of information technology
@@ -32,7 +32,7 @@
         </div>
     </div>
     <div class="py-3 mt-2 wow fadeIn" data-wow-delay=".2s" style="background-color: #181d22;">
-        <p class="text-white text-center px-2 m-0">&copy; 2024 All rights reserved. Ledn Arabia for Information Technology Company.</p>
+        <p class="text-white text-center px-2 m-0">&copy; 2024 All rights reserved. Loden Arabia for Information Technology Company.</p>
     </div>
 </footer>
 <!-- end footer  -->

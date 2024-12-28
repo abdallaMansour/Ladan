@@ -31,7 +31,7 @@
             <p class="text-dark2 d-flex gap-2 align-items-start fs-5 wow fadeInUp" data-wow-delay=".2s">
                 <i class="fa-regular fa-circle-check mt-2 text-main fs-5"></i>
                 <span>
-                    At Ledn Technology, we offer you high-quality, professional cloud hosting services.
+                    At Loden Technology, we offer you high-quality, professional cloud hosting services.
 
 
                 </span>
@@ -60,7 +60,7 @@
             <p class="text-dark2 d-flex gap-2 align-items-start fs-5 wow fadeInUp" data-wow-delay=".4s">
                 <i class="fa-regular fa-circle-check mt-2 text-main fs-5"></i>
                 <span>
-                    By choosing cloud hosting from ladan, you ensure an ideal environment for your website to grow and
+                    By choosing cloud hosting from Loden, you ensure an ideal environment for your website to grow and
                     expand according to your future needs.
                 </span>
             </p>
@@ -73,7 +73,7 @@
             <p class="text-dark2 d-flex gap-2 align-items-start fs-5 wow fadeInUp" data-wow-delay=".5s">
                 <i class="fa-regular fa-circle-check mt-2 text-main fs-5"></i>
                 <span>
-                    Choosing cloud hosting with ladan means that your website will always be ready to receive visitors
+                    Choosing cloud hosting with loden means that your website will always be ready to receive visitors
                     without performance issues.
                 </span>
             </p>
@@ -87,7 +87,7 @@
             <p class="text-dark2 d-flex gap-2 align-items-start fs-5 wow fadeInUp" data-wow-delay=".6s">
                 <i class="fa-regular fa-circle-check mt-2 text-main fs-5"></i>
                 <span>
-                    Now, order cloud hosting service from Ledn Technology, and start an endless journey of success with
+                    Now, order cloud hosting service from Loden Technology, and start an endless journey of success with
                     us.
                 </span>
             </p>

@@ -24,7 +24,7 @@ class SettingDatabaseSeeder extends Seeder
     public function articles(): array
     {
         return [
-            'name' => 'Ladan',
+            'name' => 'Loden',
             'address:ar' => 'المؤنسية طريق الشيخ حسن بن حسين بن علي',
             'address:en' => 'Al Cheikh Hasan Ibn Hussein Ibn Ali, Al Munsiyah, Riyadh 13246',
             'phone' => '+966123423123',

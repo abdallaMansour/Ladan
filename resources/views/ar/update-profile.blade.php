@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <!-- favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon">
-    <title>LADAN-ABOUT</title>
+    <title>LODEN-ABOUT</title>
 </head>
 
 <body class="update-body">

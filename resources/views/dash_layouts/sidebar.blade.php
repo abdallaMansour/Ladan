@@ -29,7 +29,7 @@
                     <li class="nav-item">
                         <a href="{{ route('dashboard.main') }}" class="nav-link @yield('active_link_main', '')">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p>Dashboard</p>
+                            <p>{{ __('sidebar.dashboard') }}</p>
                         </a>
                     </li>
                 @endif
@@ -39,7 +39,7 @@
                         <a href="{{ route('dashboard.pages.admins') }}" class="nav-link @yield('active_admins', '')">
                             <i class="nav-icon fas fa-user-tie"></i>
                             <p>
-                                Admins
+                                {{ __('sidebar.admins') }}
                             </p>
                         </a>
                     </li>
@@ -50,31 +50,9 @@
                         <a href="{{ route('dashboard.pages.roles') }}" class="nav-link @yield('active_roles', '')">
                             <i class="nav-icon fas fa-user-edit"></i>
                             <p>
-                                Roles
+                                {{ __('sidebar.roles') }}
                             </p>
                         </a>
-                    </li>
-                @endif
-
-                @if (auth()->user()->hasPermission(config('all_permissions.seo')))
-                    <li class="nav-item menu">
-                        <a href="#" class="nav-link @yield('active_nav_seo', '')">
-                            <i class="nav-icon fas fa-search-location"></i>
-                            <p>
-                                SEO
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            @foreach ((new \App\Http\Controllers\Seo\DashboardSeoController())->pages as $page)
-                                <li class="nav-item">
-                                    <a href="{{ route('dashboard.pages.seos', $page) }}" class="nav-link @yield('active_link_seo_' . $page, '')">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>{{ $result = str_replace('_', ' ', $page) }}</p>
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
                     </li>
                 @endif
 
@@ -83,9 +61,57 @@
                         <a href="{{ route('dashboard.pages.messages') }}" class="nav-link @yield('active_messages', '')">
                             <i class="nav-icon far fa-envelope"></i>
                             <p>
-                                Message
+                                {{ __('sidebar.message') }}
                             </p>
                         </a>
+                    </li>
+                @endif
+
+                @if (auth()->user()->hasPermission(config('all_permissions.employee')))
+                    <li class="nav-item menu">
+                        <a href="#" class="nav-link @yield('active_nav_employee', '')">
+                            <i class="nav-icon fas fa-briefcase"></i>
+                            <p>
+                                {{ __('sidebar.employee') }}
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('dashboard.pages.employees') }}" class="nav-link @yield('active_link_employees', '')">
+                                        <i class="fas fa-tasks nav-icon"></i>
+                                        <p>{{ __('sidebar.all_employees') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('dashboard.employees.create') }}" class="nav-link @yield('active_link_add_employee', '')">
+                                        <i class="fas fa-plus nav-icon"></i>
+                                        <p>{{ __('sidebar.add_employee') }}</p>
+                                    </a>
+                                </li>
+                        </ul>
+                    </li>
+                @endif
+
+                @if (auth()->user()->hasPermission(config('all_permissions.seo')))
+                    <li class="nav-item menu">
+                        <a href="#" class="nav-link @yield('active_nav_seo', '')">
+                            <i class="nav-icon fas fa-search-location"></i>
+                            <p>
+                                {{ __('sidebar.seo') }}
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            @foreach ((new \App\Http\Controllers\Seo\DashboardSeoController())->pages as $page)
+                                <li class="nav-item">
+                                    <a href="{{ route('dashboard.pages.seos', $page) }}" class="nav-link @yield('active_link_seo_' . $page, '')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('sidebar.' . $page) }}</p>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
                     </li>
                 @endif
 
@@ -94,7 +120,7 @@
                         <a href="#" class="nav-link @yield('active_nav_category', '')">
                             <i class="nav-icon fas fa-bars"></i>
                             <p>
-                                Category
+                                {{ __('sidebar.category') }}
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -102,13 +128,13 @@
                                 <li class="nav-item">
                                     <a href="{{ route('dashboard.pages.categories') }}" class="nav-link @yield('active_link_categories', '')">
                                         <i class="fas fa-tasks nav-icon"></i>
-                                        <p>All Categories</p>
+                                        <p>{{ __('sidebar.all_categories') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('dashboard.categories.create') }}" class="nav-link @yield('active_link_add_category', '')">
                                         <i class="fas fa-plus nav-icon"></i>
-                                        <p>Add Categories</p>
+                                        <p>{{ __('sidebar.add_category') }}</p>
                                     </a>
                                 </li>
                         </ul>
@@ -120,7 +146,7 @@
                         <a href="{{ route('dashboard.pages.tickets') }}" class="nav-link @yield('active_ticket', '')">
                             <i class="nav-icon fas fa-ticket-alt"></i>
                             <p>
-                                Tickets
+                                {{ __('sidebar.tickets') }}
                             </p>
                         </a>
                     </li>
@@ -131,7 +157,7 @@
                         <a href="{{ route('dashboard.pages.settings') }}" class="nav-link @yield('active_settings', '')">
                             <i class="nav-icon fas fa-cogs"></i>
                             <p>
-                                Settings
+                                {{ __('sidebar.settings') }}
                             </p>
                         </a>
                     </li>
@@ -145,6 +171,38 @@
                 {{-- User bar --}}
 
                 @if (auth()->user()->type == 'user')
+                    <li class="nav-item menu">
+                        <a href="#" class="nav-link @yield('active_nav_ticket', '')">
+                            <i class="nav-icon fas fa-cogs"></i>
+                            <p>
+                                {{ __('sidebar.tickets') }}
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('pages.tickets') }}" class="nav-link @yield('active_ticket', '')">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ __('sidebar.all_tickets') }}</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('pages.tickets.create') }}" class="nav-link @yield('active_create_ticket', '')">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ __('sidebar.create_ticket') }}</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
+
+
+
+                {{-- Employee bar --}}
+
+                {{-- @if (auth()->user()->type == 'employee')
                     <li class="nav-item menu">
                         <a href="#" class="nav-link @yield('active_nav_ticket', '')">
                             <i class="nav-icon fas fa-cogs"></i>
@@ -170,7 +228,7 @@
                             </li>
                         </ul>
                     </li>
-                @endif
+                @endif --}}
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

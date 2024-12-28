@@ -14,12 +14,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Tickets</h1>
+                        <h1>{{ __('tickets.tickets') }}</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Tickets</li>
+                            <li class="breadcrumb-item"><a href="#">{{ __('tickets.home') }}</a></li>
+                            <li class="breadcrumb-item active">{{ __('tickets.tickets') }}</li>
                         </ol>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                         <!-- jquery validation -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Ticket Update</h3>
+                                <h3 class="card-title">{{ __('tickets.create.ticket_create') }}</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
@@ -43,16 +43,16 @@
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="message">Message</label>
-                                        <textarea name="message" class="form-control" id="message" placeholder="Message">{{ old('message') }}</textarea>
+                                        <label for="message">{{ __('tickets.create.message') }}</label>
+                                        <textarea required name="message" class="form-control" id="message" placeholder="{{ __('tickets.create.message') }}">{{ old('message') }}</textarea>
                                         @error('message')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="exampleSelectBorder">Category</label>
-                                        <select class="custom-select form-control-border" name="category_id" id="exampleSelectBorder">
+                                        <label for="exampleSelectBorder">{{ __('tickets.create.category') }}</label>
+                                        <select required class="custom-select form-control-border" name="category_id" id="exampleSelectBorder">
                                             @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>{{ $category->name }}</option>
                                             @endforeach
@@ -63,11 +63,11 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="exampleSelectBorder">Priority</label>
-                                        <select class="custom-select form-control-border" name="priority" id="exampleSelectBorder">
-                                            <option value="urgent" @selected(old('priority') == 'urgent')>Urgent</option>
-                                            <option value="medium" @selected(old('priority') == 'medium')>Medium</option>
-                                            <option value="low" @selected(old('priority') == 'low')>Low</option>
+                                        <label for="exampleSelectBorder">{{ __('tickets.create.priority') }}</label>
+                                        <select required class="custom-select form-control-border" name="priority" id="exampleSelectBorder">
+                                            <option value="low" @selected(old('priority') == 'low')>{{ __('tickets.create.priority_low') }}</option>
+                                            <option value="medium" @selected(old('priority') == 'medium')>{{ __('tickets.create.priority_medium') }}</option>
+                                            <option value="urgent" @selected(old('priority') == 'urgent')>{{ __('tickets.create.priority_urgent') }}</option>
                                         </select>
                                         @error('priority')
                                             <span class="text-danger">{{ $message }}</span>
@@ -75,11 +75,11 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="file">Upload file</label>
+                                        <label for="file">{{ __('tickets.create.upload_file') }}</label>
                                         <div class="input-group">
                                             <div class="custom-file">
                                                 <input onchange="changeFile(this)" name="file" type="file" class="custom-file-input" id="file">
-                                                <label class="custom-file-label" for="file">Choose file</label>
+                                                <label class="custom-file-label" for="file">{{ __('tickets.create.chose_file') }}</label>
                                             </div>
                                         </div>
                                         @error('file')
@@ -90,7 +90,7 @@
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">{{ __('tickets.create.submit') }}</button>
                                 </div>
                             </form>
                         </div>
@@ -107,11 +107,6 @@
             </div><!-- /.container-fluid -->
         </section>
         <!-- /.content -->
-
-
-        <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top">
-            <i class="fas fa-chevron-up"></i>
-        </a>
     </div>
     <!-- /.content-wrapper -->
 @endsection

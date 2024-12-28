@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Role;
+use App\Models\User;
 use App\Models\Ticket;
 use App\Models\Message;
 use App\Models\Setting;
@@ -14,6 +15,7 @@ use App\Http\Controllers\Message\MessageController;
 use App\Http\Controllers\DashboardProfileController;
 use App\Http\Controllers\Seo\DashboardSeoController;
 use App\Http\Controllers\Category\CategoryController;
+use App\Http\Controllers\Employee\EmployeeController;
 use App\Http\Controllers\Setting\DashboardSettingController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\DashboardAuth\NewPasswordController;
@@ -88,10 +90,20 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
                 Route::delete('categories/delete/{id}', [CategoryController::class, 'destroy'])->name('categories.delete');
             });
 
+            // Employee
+            Route::middleware('hasPermission:employee')->group(function () {
+                Route::view('employees', 'pages.employees.index', ['employees' => User::where('type', 'employee')->get()])->name('pages.employees');
+                Route::view('employees/create', 'pages.employees.create')->name('employees.create');
+                Route::get('employees/edit/{id}', [EmployeeController::class, 'edit'])->name('employees.edit');
+                Route::post('employees/store', [EmployeeController::class, 'store'])->name('employees.store');
+                Route::patch('employees/update/{id}', [EmployeeController::class, 'update'])->name('employees.update');
+                Route::delete('employees/delete/{id}', [EmployeeController::class, 'destroy'])->name('employees.delete');
+            });
+
             // Tickets
             Route::middleware('hasPermission:ticket')->group(function () {
                 Route::view('tickets', 'pages.tickets.index', ['tickets' => Ticket::all()])->name('pages.tickets');
-                Route::delete('tickets/delete/{id}', [TicketController::class, 'destroy'])->name('tickets.delete');
+                Route::patch('tickets/change_status/{id}', [TicketController::class, 'change_status'])->name('tickets.change_status');
             });
 
             // Messages

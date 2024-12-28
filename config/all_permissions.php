@@ -8,4 +8,5 @@ return [
     'seo' => 'seo',
     'ticket' => 'ticket',
     'category' => 'category',
+    'employee' => 'employee',
 ];

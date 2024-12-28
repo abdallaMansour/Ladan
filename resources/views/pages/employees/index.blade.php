@@ -1,15 +1,12 @@
 @extends('dash_layouts.app')
 
-@section('active_admins', 'active')
+@section('active_nav_employee', 'active')
+@section('active_link_employees', 'active')
 @section('mode', 'dark')
 @section('layout_style', 'dark-mode layout-fixed layout-navbar-fixed layout-footer-fixed')
 
 
 @section('content')
-
-    @php
-        $users = \App\Models\User::where('type', 'admin')->where('id', '!=', auth()->id())->get();
-    @endphp
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -36,8 +33,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title d-flex justify-content-between align-items-center w-100">Admin table <a href="{{ route('dashboard.pages.admins.create') }}"
-                                        class="btn btn-primary">Add Admin</a></h3>
+                                <h3 class="card-title d-flex justify-content-between align-items-center w-100">Count of employees : {{ $employees->count() }}</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -48,41 +44,56 @@
                                             <th>Name</th>
                                             <th>E-mail</th>
                                             <th>Phone</th>
-                                            <th>Roles</th>
                                             <th>Image</th>
                                             <th>Control</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($users as $user)
+                                        @foreach ($employees as $employee)
                                             <tr>
-                                                <td>{{ $user->id }}</td>
-                                                <td>{{ $user->name }}</td>
-                                                <td>{{ $user->email }}</td>
-                                                <td>{{ $user->phone }}</td>
+                                                <td>{{ $employee->id }}</td>
+                                                <td>{{ $employee->name }}</td>
+                                                <td>{{ $employee->email }}</td>
+                                                <td>{{ $employee->phone }}</td>
+                                                <td><img src="{{ $employee->getFirstMediaUrl() }}" style="max-width: 80px;max-height:80px;border-radius: 150px" alt="employee_image"></td>
                                                 <td>
-                                                    <div>
-                                                        <button type="button" class="btn btn-primary " data-toggle="dropdown" aria-expanded="false">Show roles</button>
-
-                                                        <div class="dropdown-menu" role="menu" style="">
-                                                            @foreach ($user->roles as $index => $role)
-                                                                <a class="dropdown-item">{{ $role->name }}</a>
-                                                            @endforeach
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td><img src="{{ $user->getFirstMediaUrl() ?: asset('images/default-user.jpg') }}" alt="image" width="50"></td>
-                                                <td>
-                                                    <div class="btn-group-vertical w-100">
-                                                        <a href="{{ route('dashboard.pages.admins.update', $user->id) }}" class="btn btn-primary w-100">Update</a>
-                                                        <form action="{{ route('dashboard.admins.delete', $user->id) }}" method="POST" class="w-100">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button class="btn btn-danger w-100">Delete</button>
-                                                        </form>
-                                                    </div>
+                                                    <a class="btn btn-sm btn-primary" href="{{ route('dashboard.employees.edit', $employee->id) }}" >Update</a>
+                                                    <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete-{{ $employee->id }}">Delete</button>
                                                 </td>
                                             </tr>
+
+
+
+
+
+
+                                            <div class="modal fade" id="delete-{{ $employee->id }}">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">{{ $employee->name }}</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Do you want to delete this employee?
+                                                        </div>
+                                                        <div class="modal-footer justify-content-between">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                                                            <form action="{{ route('dashboard.employees.delete', $employee->id) }}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button class="btn btn-sm btn-danger">Delete</button>
+                                                            </form>
+
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.modal-content -->
+                                                </div>
+                                                <!-- /.modal-dialog -->
+                                            </div>
                                         @endforeach
                                     </tbody>
                                     <tfoot>
@@ -91,7 +102,6 @@
                                             <th>Name</th>
                                             <th>E-mail</th>
                                             <th>Phone</th>
-                                            <th>Roles</th>
                                             <th>Image</th>
                                             <th>Control</th>
                                         </tr>
@@ -119,18 +129,7 @@
     <link rel="stylesheet" href="{{ asset('dashboard_assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dashboard_assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 @endsection
-{{-- @section('footer')
-    <!-- bs-custom-file-input -->
-    <script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="../../dist/js/adminlte.min.js"></script>
-    <!-- Page specific script -->
-    <script>
-        $(function() {
-            bsCustomFileInput.init();
-        });
-    </script>
-@endsection --}}
+
 @section('footer')
     <!-- DataTables  & Plugins -->
     <script src="{{ asset('dashboard_assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
