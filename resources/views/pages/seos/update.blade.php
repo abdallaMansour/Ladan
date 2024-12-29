@@ -14,12 +14,18 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Seo</h1>
+                        <h1>{{ __('seo.seo') }}</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Seo</li>
+                            
+                            @if (App::currentLocale() == 'en')
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard.main') }}">{{ __('seo.home') }}</a></li>
+                                <li class="breadcrumb-item">{{ __('seo.seo') }}</li>
+                            @else
+                                <li class="breadcrumb-item">{{ __('seo.seo') }}</li>
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard.main') }}">{{ __('seo.home') }}</a></li>
+                            @endif
                         </ol>
                     </div>
                 </div>
@@ -35,7 +41,7 @@
                         <!-- jquery validation -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Seo Update</h3>
+                                <h3 class="card-title">{{ __('seo.update_' . $page) }}</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
@@ -44,16 +50,16 @@
                                 <div class="card-body">
                                     @if ($page == 'home')
                                         <div class="form-group">
-                                            <label for="site_name_ar">Site Name Ar</label>
-                                            <input type="text" name="site_name_ar" class="form-control" id="site_name_ar" placeholder="Site Name Ar"
+                                            <label for="site_name_ar">{{ __('seo.edit.site_name_ar') }}</label>
+                                            <input type="text" name="site_name_ar" class="form-control" id="site_name_ar" placeholder="{{ __('seo.edit.site_name_ar') }}"
                                                 value="{{ old('site_name_ar') ?? $seo->getTranslation('ar')->site_name }}">
                                             @error('site_name_ar')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="site_name_en">Site Name En</label>
-                                            <input type="text" name="site_name_en" class="form-control" id="site_name_en" placeholder="Site Name En"
+                                            <label for="site_name_en">{{ __('seo.edit.site_name_en') }}</label>
+                                            <input type="text" name="site_name_en" class="form-control" id="site_name_en" placeholder="{{ __('seo.edit.site_name_en') }}"
                                                 value="{{ old('site_name_en') ?? $seo->getTranslation('en')->site_name }}">
                                             @error('site_name_en')
                                                 <span class="text-danger">{{ $message }}</span>
@@ -63,15 +69,15 @@
 
 
                                     <div class="form-group">
-                                        <label for="title_ar">Title Ar</label>
-                                        <input type="text" name="title_ar" class="form-control" id="title_ar" placeholder="Title Ar" value="{{ old('title_ar') ?? $seo->getTranslation('ar')->title }}">
+                                        <label for="title_ar">{{ __('seo.edit.title_ar') }}</label>
+                                        <input type="text" name="title_ar" class="form-control" id="title_ar" placeholder="{{ __('seo.edit.title_ar') }}" value="{{ old('title_ar') ?? $seo->getTranslation('ar')->title }}">
                                         @error('title_ar')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="title_en">Title En</label>
-                                        <input type="text" name="title_en" class="form-control" id="title_en" placeholder="Title En" value="{{ old('title_en') ?? $seo->getTranslation('en')->title }}">
+                                        <label for="title_en">{{ __('seo.edit.title_en') }}</label>
+                                        <input type="text" name="title_en" class="form-control" id="title_en" placeholder="{{ __('seo.edit.title_en') }}" value="{{ old('title_en') ?? $seo->getTranslation('en')->title }}">
                                         @error('title_en')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -79,30 +85,30 @@
 
 
                                     <div class="form-group">
-                                        <label for="description_ar">Description Ar</label>
-                                        <textarea class="form-control" name="description_ar" placeholder="Description Ar" id="description_ar" cols="30" rows="10">{{ old('description_ar') ?? $seo->getTranslation('ar')->description }}</textarea>
+                                        <label for="description_ar">{{ __('seo.edit.description_ar') }}</label>
+                                        <textarea class="form-control" name="description_ar" placeholder="{{ __('seo.edit.description_ar') }}" id="description_ar" cols="30" rows="10">{{ old('description_ar') ?? $seo->getTranslation('ar')->description }}</textarea>
                                         @error('description_ar')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="description_en">Description En</label>
-                                        <textarea class="form-control" name="description_en" placeholder="Description En" id="description_en" cols="30" rows="10">{{ old('description_en') ?? $seo->getTranslation('en')->description }}</textarea>
+                                        <label for="description_en">{{ __('seo.edit.description_en') }}</label>
+                                        <textarea class="form-control" name="description_en" placeholder="{{ __('seo.edit.description_en') }}" id="description_en" cols="30" rows="10">{{ old('description_en') ?? $seo->getTranslation('en')->description }}</textarea>
                                         @error('description_en')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="keyword_ar">Keyword Ar</label>
-                                        <textarea class="form-control" name="keyword_ar" placeholder="Keyword Ar" id="keyword_ar" cols="30" rows="10">{{ old('keyword_ar') ?? $seo->getTranslation('ar')->keyword }}</textarea>
+                                        <label for="keyword_ar">{{ __('seo.edit.keyword_ar') }}</label>
+                                        <textarea class="form-control" name="keyword_ar" placeholder="{{ __('seo.edit.keyword_ar') }}" id="keyword_ar" cols="30" rows="10">{{ old('keyword_ar') ?? $seo->getTranslation('ar')->keyword }}</textarea>
                                         @error('keyword_ar')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="keyword_en">Keyword En</label>
-                                        <textarea class="form-control" name="keyword_en" placeholder="Keyword En" id="keyword_en" cols="30" rows="10">{{ old('keyword_en') ?? $seo->getTranslation('en')->keyword }}</textarea>
+                                        <label for="keyword_en">{{ __('seo.edit.keyword_en') }}</label>
+                                        <textarea class="form-control" name="keyword_en" placeholder="{{ __('seo.edit.keyword_en') }}" id="keyword_en" cols="30" rows="10">{{ old('keyword_en') ?? $seo->getTranslation('en')->keyword }}</textarea>
                                         @error('keyword_en')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -110,14 +116,14 @@
 
                                     @if ($page == 'home')
                                         <div class="form-group">
-                                            <label for="exampleInputFile">Profile image</label>
+                                            <label for="exampleInputFile">{{ __('seo.edit.image') }}</label>
                                             <div class="input-group">
                                                 <div class="custom-file">
                                                     <input onchange="changeImage(this)" name="image" type="file" class="custom-file-input" id="exampleInputFile">
-                                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                                    <label class="custom-file-label" for="exampleInputFile">{{ __('seo.edit.chose_file') }}</label>
                                                 </div>
                                                 <div class="input-group-append">
-                                                    <span class="input-group-text">Upload</span>
+                                                    <span class="input-group-text">{{ __('seo.edit.update') }}</span>
                                                 </div>
                                             </div>
                                             @error('image')
@@ -136,7 +142,7 @@
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">{{ __('seo.edit.submit') }}</button>
                                 </div>
                             </form>
                         </div>

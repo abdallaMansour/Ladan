@@ -75,6 +75,6 @@ class DashboardSeoController extends Controller
             $seo->addMedia($request->icon)->toMediaCollection('icon');
         }
 
-        return back()->with('success', 'SEO updated successfully');
+        return back()->with('success', __('seo.update.success'));
     }
 }
